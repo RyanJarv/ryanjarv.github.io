@@ -3,7 +3,7 @@
 It is automatically transformed by Jekyll forked from [Jekyll](http://github.com/mojombo/jekyll)
 into a static site whenever I push this repository to GitHub. The site is hosted at [ryanjarv.github.io](ryanjarv.github.io).
 
-[mojombo](http://github.com/mojombo/jekyll)
+Layout from [mojombo](http://github.com/mojombo/jekyll)
 
 ## License
 
