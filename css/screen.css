@@ -173,6 +173,7 @@ ul.posts {
   }
 
     #post pre code {
+      white-space: pre-wrap;
       border: none;
     }
 
