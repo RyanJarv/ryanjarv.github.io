@@ -149,7 +149,9 @@ ul.posts {
 /*****************************************************************************/
 
 #post {
-
+  -webkit-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
 }
 
   /* standard */
@@ -174,6 +176,8 @@ ul.posts {
 
     #post pre code {
       white-space: pre-wrap;
+      word-break: break-all;
+      word-wrap: break-word;
       border: none;
     }
 

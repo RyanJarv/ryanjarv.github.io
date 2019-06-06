@@ -7,14 +7,14 @@ title: Backdooring Route 53 With Cross Account DNS
 ================
 
 <p class="meta">13 May 2019 - Somewhere</p>
-Back in late 2017 I was working on writing the notably missing [aws_route53_vpc_association_authorization](https://github.com/terraform-providers/terraform-provider-aws/pull/2005) provider for terraform AWS when I ran into a fairly annoying issue with the cross account Route 53 hosted zone association process: The Route 53 API in a cross account setup can only display hosted zone association info when calling from the hosted zone account.
+Back in late 2017 I was working on writing the notably missing [aws_route53_&shy;vpc_association_authorization](https://github.com/terraform-providers/terraform-provider-aws/pull/2005) provider for terraform AWS when I ran into a fairly annoying issue with the cross account Route 53 hosted zone association process: The Route 53 API in a cross account setup can only display hosted zone association info when calling from the hosted zone account.
 
 This is a problem for scripting when you need to verify the state of the association without access to both accounts but the bigger and perhaps less obvious problem is it can be abused to provide persistent control over DNS from another AWS account. There isn't a whole lot to this attack, the only assumption is that the attacker, or possibly disgruntled employee, deviant third party contractor, etc.., has at one point had access to the account. Interestingly this attack is a side effect of how the API was designed and we won't be doing much other then setting up the resources how they where designed to be used, the important part is simply that the main owner of the account isn't told, or otherwise alerted possibly through API call logging that these resources where set up.
 
-So what does this look like you're wondering?
+So what does this look like your wondering?
   1. Attacker has access to the victim account as well as their own evil account.
   2. In the evil account a hosted zone is created for the domain www.example.com and a CNAME pointing to www.evil-attacker.com
-  2. CreateVPCAssociationAuthorization is run in the attacker's account, and AssociateVPCWithHostedZone in the victim's account to finish the association between the evil hosted zone and the victim's VPC.
+  2. CreateVPCAssociationAuthorization is run in the attacker's account, and Associate&shy;VPCWithHostedZone in the victim's account to finish the association between the evil hosted zone and the victim's VPC.
 
 Now when any node using dynamic DNS in the victim's VPC makes a request for 'www.example.com' the malicious record with the CNAME www.evil-attacker.com is returned. This is of course expected since this is the normal process to share hosted zone's across accounts. The problem is simply the victim who doesn't have access to the evil account or even know it exists, doesn't have any way of auditing the configuration of this shared hosted zone.
 
