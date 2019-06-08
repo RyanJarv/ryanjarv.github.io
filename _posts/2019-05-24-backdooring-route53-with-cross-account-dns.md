@@ -59,7 +59,7 @@ However unfortunately if the attacker leaves your VPC as the only one attached t
 aws> route53 disassociate-vpc-from-hosted-zone --vpc 'VPCRegion=us-west-1,VPCId=vpc-bde6deda' --hosted-zone-id Z2A3GARM5EV7XX An error occurred (LastVPCAssociation) when calling the DisassociateVPCFromHostedZone operation:Cannot remove last VPC association for the private zone
 ```
 
-Checkmate. Attacker controlls DNS without having current access to your account.
+Checkmate. The attacker controls DNS with little to no risk of being detected.
 
 
 
