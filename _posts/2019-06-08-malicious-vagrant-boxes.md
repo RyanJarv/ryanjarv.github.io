@@ -46,6 +46,8 @@ For details type `warranty'.
 1+1
 2
 ```
+Ouch, that’s certainly not expected for software that’s essentially a wrapper around various hypervisors.
+
 
 Now I've been meaning to make a post about this for some time, when I originally noticed this it was very difficult to find *any* mention of this which is a bit unfortantate. For a while I've been using the following workaround, which I admit isn't ideal.. but still works.
 
