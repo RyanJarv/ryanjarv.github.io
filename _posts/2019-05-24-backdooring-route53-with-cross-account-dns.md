@@ -60,3 +60,7 @@ aws> route53 disassociate-vpc-from-hosted-zone --vpc 'VPCRegion=us-west-1,VPCId=
 ```
 
 Checkmate. Attacker controlls DNS without having current access to your account.
+
+
+
+Note: This was reported and acknowledged by AWS security when I originally discovered the issue, I'm not currently aware of any timeline on fixing it.
