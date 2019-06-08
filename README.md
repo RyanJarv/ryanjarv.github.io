@@ -1,7 +1,7 @@
 # This is the data for my blog
 
 It is automatically transformed by Jekyll forked from [Jekyll](http://github.com/mojombo/jekyll)
-into a static site whenever I push this repository to GitHub. The site is hosted at [ryanjarv.github.io](ryanjarv.github.io).
+into a static site whenever I push this repository to GitHub. The site is hosted at [blog.ryanjarv.sh](https://blog.ryanjarv.sh).
 
 Layout from [mojombo](http://github.com/mojombo/jekyll)
 
