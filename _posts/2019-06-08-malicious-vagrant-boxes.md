@@ -32,29 +32,9 @@ Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
 ==> default: flag to force provisioning. Provisioners marked to run always will still run.
 host$ vagrant ssh
-Welcome to Ubuntu Eoan Ermine (development branch) (GNU/Linux 5.0.0-15-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
+**snip**
 
-  System information as of Sat Jun  8 08:06:42 UTC 2019
-
-  System load:  0.0               Processes:             111
-  Usage of /:   11.5% of 9.63GB   Users logged in:       1
-  Memory usage: 18%               IP address for enp0s3: 10.0.2.15
-  Swap usage:   0%
-
- * Ubuntu's Kubernetes 1.14 distributions can bypass Docker and use containerd
-   directly, see https://bit.ly/ubuntu-containerd or try it now with
-
-     snap install microk8s --classic
-
-0 updates can be installed immediately.
-0 of these updates are security updates.
-
-
-Last login: Sat Jun  8 07:59:53 2019 from 10.0.2.2
 vagrant@ubuntu-eoan:~$ echo 'exec("bc")' >> /vagrant/Vagrantfile
 vagrant@ubuntu-eoan:~$ logout
 Connection to 127.0.0.1 closed.
@@ -76,7 +56,7 @@ Now I've been meaning to make a post about this for some time, when I originally
 This will move the shared folder to a subfolder named vagrant under the main directory, which includes the Vagrantfile config.
 
 
-Just now though when I was writing this I was surprised to notice this warning that pops up when you download run `vagrant up` and the box doesn't exist on your computer yet.
+Just now though when I was writing this I was surprised to notice this warning that pops up when you run `vagrant up` the very first time on your computer (but not after that! Well specifically only the first time for each box, but.. still).
 
 ```
 Vagrant is currently configured to create VirtualBox synced folders with
@@ -109,30 +89,10 @@ Bringing machine 'default' up with 'virtualbox' provider...
 ==> default: Preparing network interfaces based on configuration...
 
 ** snip **
+
 host$ vagrant ssh
-Welcome to Ubuntu Eoan Ermine (development branch) (GNU/Linux 5.0.0-15-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Sat Jun  8 09:00:07 UTC 2019
-
-  System load:  0.56              Processes:             118
-  Usage of /:   11.5% of 9.63GB   Users logged in:       0
-  Memory usage: 16%               IP address for enp0s3: 10.0.2.15
-  Swap usage:   0%
-
- * Ubuntu's Kubernetes 1.14 distributions can bypass Docker and use containerd
-   directly, see https://bit.ly/ubuntu-containerd or try it now with
-
-     snap install microk8s --classic
-
-0 updates can be installed immediately.
-0 of these updates are security updates.
-
-
-Last login: Sat Jun  8 08:06:42 2019 from 10.0.2.2
+** snip **
 vagrant@ubuntu-eoan:~$ ls /vagrant/
 vagrant@ubuntu-eoan:~$ sudo touch /vagrant/asdf
 vagrant@ubuntu-eoan:~$ ls -lah /vagrant/
