@@ -26,12 +26,12 @@ There is the GetHostedZone call but it require's read access to the hosted zone 
 
 So assuming you did know the ID (which you won't) this is what you end up getting through the API.
 ```wrap
-aws> route53 get-hosted-zone --id /hostedzone/Z2A3GARM5EV7XX An error occurred (AccessDenied) when calling the GetHostedZone operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
+aws route53 get-hosted-zone --id /hostedzone/Z2A3GARM5EV7XX An error occurred (AccessDenied) when calling the GetHostedZone operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
 ```
 
 Further more ListHostedZones in the target or vicitim's account doesn't show anything, which is unfortantely misleading. In this example I currently have a cross-account hosted zone associated with one of my VPC's rederecting traffic from www.example.com to www.evil-attacker.com.
 ```
-aws> route53 list-hosted-zones
+aws route53 list-hosted-zones
 {
     "HostedZones": []
 }
@@ -39,7 +39,7 @@ aws> route53 list-hosted-zones
 
 Same with ListHostedZonesByName
 ```
-aws> route53 list-hosted-zones-by-name
+aws route53 list-hosted-zones-by-name
 {
     "HostedZones": [],
     "IsTruncated": false,
@@ -50,7 +50,7 @@ aws> route53 list-hosted-zones-by-name
 Can't run ListVPCAssociationAuthorizations of course, this is meant to be run by the hosted zone account.
 
 ```bash
-aws> route53 list-vpc-association-authorizations --hosted-zone-id Z2A3GARM5EV7XX
+aws route53 list-vpc-association-authorizations --hosted-zone-id Z2A3GARM5EV7XX
 An error occurred (AccessDenied) when calling the ListVPCAssociationAuthorizations operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
 ```
 
@@ -69,7 +69,7 @@ DESCRIPTION
 
 And trying this results in the following:
 ```wrap
-aws> route53 disassociate-vpc-from-hosted-zone --vpc 'VPCRegion=us-west-1,VPCId=vpc-bde6deda' --hosted-zone-id Z2A3GARM5EV7XX An error occurred (LastVPCAssociation) when calling the DisassociateVPCFromHostedZone operation:Cannot remove last VPC association for the private zone
+aws route53 disassociate-vpc-from-hosted-zone --vpc 'VPCRegion=us-west-1,VPCId=vpc-bde6deda' --hosted-zone-id Z2A3GARM5EV7XX An error occurred (LastVPCAssociation) when calling the DisassociateVPCFromHostedZone operation:Cannot remove last VPC association for the private zone
 ```
 
 Checkmate. Attacker controls DNS without risk of being detected through the API. Furthermore dissacociation can be prevented by the attacker, requiring manual intervention from AWS support.
