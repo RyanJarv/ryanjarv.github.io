@@ -76,5 +76,5 @@ Checkmate. Attacker controls DNS without risk of being detected through the API.
 
 Note: This was reported and acknowledged by AWS security when I originally discovered the issue, I'm not currently aware of any timeline on fixing it. I also want to mention again here that it seems this isn't an issue through the web console, so it is possible to manually verify your account isn't affected by this.
 
-Back to original problem, this is the core issue around implementing the route53_hosted_zone_association resource in terraform in a cross account configuration. More specifically, we need to verify the current state in the hosted zone account while configuring the resource in the target account. This is something that doesn't map well to terraform's state tracking CRUD model where each resource is a single connection to a single account.
+Back to original problem, this is the core issue around implementing the route53_hosted_zone_association resource in terraform in a cross account configuration. More specifically, we need to verify the current state in the hosted zone account while configuring the resource in the target account. This is something that doesn't map well to terraform's state tracking CRUD model where each resource is are connection's to a single account.
 
