@@ -16,13 +16,20 @@ So what does this look like your wondering?
   2. In the evil account a hosted zone is created for the domain www.example.com and a CNAME pointing to www.evil-attacker.com
   2. CreateVPCAssociationAuthorization is run in the attacker's account, and Associate&shy;VPCWithHostedZone in the victim's account to finish the association between the evil hosted zone and the victim's VPC.
 
-Now when any node using dynamic DNS in the victim's VPC makes a request for 'www.example.com' the malicious record with the CNAME www.evil-attacker.com is returned. This is of course expected since this is the normal process to share hosted zone's across accounts. The problem is simply the victim who doesn't have access to the evil account or even know it exists, doesn't have any way of auditing the configuration of this shared hosted zone.
+Now when any node using dynamic DNS in the victim's VPC makes a request for 'www.example.com' the malicious record with the CNAME www.evil-attacker.com is returned. This is of course expected since this is the normal process to share hosted zone's across accounts. The problem is the owner of the main account doesn't have access to the evil account or any ability to enumerate it, preventing any way of auditing the configuration of this shared hosted zone through the API.
 
- There is the GetHostedZone and GetHostedZoneByName calls but they require read access to the hosted zone, an issue for terraform since it will be connecting to the receiving account.
+(Note: I've recently heard this actually show's up in the web interface. I haven't verified this but if it's the case then this issue is limited to using the API. This is fairly common though as you can't expect people to manually go through dozens of accounts and verify resources manually.)
 
-the state of associated hosted zones to VPC’s when connecting to the account receiving the hosted zone share.  terraform's route53_zone_association resource needs to use GetHostedZone's output of associated VPC’s to determine if the zone is still attached to our given VPC.
+So how does enumeration of these resources work currently?
 
-ListHostedZones in the victims account doesn't show anything..
+There is the GetHostedZone call but it require's read access to the hosted zone along with the ID of the hosted zone.
+
+So assuming you did know the ID (which you won't) this is what you end up getting through the API.
+```wrap
+aws> route53 get-hosted-zone --id /hostedzone/Z2A3GARM5EV7XX An error occurred (AccessDenied) when calling the GetHostedZone operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
+```
+
+Further more ListHostedZones in the target or vicitim's account doesn't show anything, which is unfortantely misleading. In this example I currently have a cross-account hosted zone associated with one of my VPC's rederecting traffic from www.example.com to www.evil-attacker.com.
 ```
 aws> route53 list-hosted-zones
 {
@@ -40,27 +47,34 @@ aws> route53 list-hosted-zones-by-name
 }
 ```
 
-Can't use GetHostedZone since the victim wouldn't know the hosted zone id, but assuming they somehow did the victim account can't read it anyways.
-```wrap
-aws> route53 get-hosted-zone --id /hostedzone/Z2A3GARM5EV7XX An error occurred (AccessDenied) when calling the GetHostedZone operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
-```
-
-You can still attach other hosted zone's just like you normally would. Can't run ListVPCAssociationAuthorizations of course
+Can't run ListVPCAssociationAuthorizations of course, this is meant to be run by the hosted zone account.
 
 ```bash
-aws> route53 list-vpc-association-authorizations --hosted-zone-id Z2A3GARM5EV7XXAn error occurred (AccessDenied) when calling the ListVPCAssociationAuthorizations operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
+aws> route53 list-vpc-association-authorizations --hosted-zone-id Z2A3GARM5EV7XX
+An error occurred (AccessDenied) when calling the ListVPCAssociationAuthorizations operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
 ```
 
-You can dissacociate *if* you somehow know the hosted zone id.
+You can still attach other hosted zone's just like you normally would (sorry no example for this right now).
 
-However unfortunately if the attacker leaves your VPC as the only one attached to the zone it will prevent you from removing it even if you had the zone id somehow.
+You can dissacociate *if* you somehow know the hosted zone id. However unfortunately this can also be prevented by the attacker by leaving your VPC as the only one attached to the zone.
 
+From the CLI help page on disassociate-vpc-from-hosted-zone:
+```
+DESCRIPTION
+       Disassociates  a  VPC  from a Amazon Route 53 private hosted zone. Note
+       the following:
+
+       o You can't disassociate the last VPC from a private hosted zone.
+```
+
+And trying this results in the following:
 ```wrap
 aws> route53 disassociate-vpc-from-hosted-zone --vpc 'VPCRegion=us-west-1,VPCId=vpc-bde6deda' --hosted-zone-id Z2A3GARM5EV7XX An error occurred (LastVPCAssociation) when calling the DisassociateVPCFromHostedZone operation:Cannot remove last VPC association for the private zone
 ```
 
-Checkmate. The attacker controls DNS with little to no risk of being detected.
+Checkmate. Attacker controls DNS without risk of being detected through the API. Furthermore dissacociation can be prevented by the attacker, requiring manual intervention from AWS support.
 
+Note: This was reported and acknowledged by AWS security when I originally discovered the issue, I'm not currently aware of any timeline on fixing it. I also want to mention again here that it seems this isn't an issue through the web console, so it is possible to manually verify your account isn't affected by this.
 
+Back to original problem, this is the core issue around implementing the route53_hosted_zone_association resource in terraform in a cross account configuration. More specifically, we need to verify the current state in the hosted zone account while configuring the resource in the target account. This is something that doesn't map well to terraform's state tracking CRUD model where each resource is a single connection to a single account.
 
-Note: This was reported and acknowledged by AWS security when I originally discovered the issue, I'm not currently aware of any timeline on fixing it.
