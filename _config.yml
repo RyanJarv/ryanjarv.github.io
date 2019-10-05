@@ -1,0 +1,5 @@
+defaults:
+  - scope:
+      path: "resumes"
+    values:
+      pdf: true
