@@ -205,3 +205,52 @@ ul.posts {
   #related h2 {
     margin-bottom: 1em;
   }
+
+
+#resume {
+  -webkit-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  padding: unset;
+}
+
+  /* standard resume */
+
+  #resume pre {
+    border: 1px solid #ddd;
+    background-color: #eef;
+  }
+
+  #resume ul,
+  #resume ol {
+    margin-left: 1.35em;
+  }
+
+  #resume code {
+    border: 1px solid #ddd;
+    background-color: #eef;
+    font-size: 85%;
+  }
+
+    #resume pre code {
+      white-space: pre-wrap;
+      word-break: break-all;
+      word-wrap: break-word;
+      border: none;
+    }
+
+  #resume img {
+    max-width: 42em;
+  }
+
+  /* terminal */
+
+  #resume pre.terminal {
+    border: 1px solid black;
+    background-color: #333;
+    color: white;
+  }
+
+  #resume pre.terminal code {
+    background-color: #333;
+  }
