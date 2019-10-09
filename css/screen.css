@@ -254,3 +254,19 @@ ul.posts {
   #resume pre.terminal code {
     background-color: #333;
   }
+
+  .rotate90 {
+    margin-top: 5em;
+    margin-bottom: 5em;
+    transform: rotate(90deg);
+  }
+  
+  .rotate180 {
+    transform: rotate(180deg);
+  }
+  
+  .rotate270 {
+    margin-top: 5em;
+    margin-bottom: 5em;
+    transform: rotate(270deg);
+  }
