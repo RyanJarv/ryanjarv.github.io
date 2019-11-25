@@ -18,9 +18,5 @@ I think this post, [monogatari the sexuality is the narative](https://wavemotion
 
 One thought I've had recently is instead of simply not recommending the show I should instead be recommending a specific watch order, something like skipping the fanservice heavy Nicemonogatari. This is just an idea right now and really need to think about it more. With that in mind though I found the post [nisemonogatari and the nature of fanservice](http://wrongeverytime.com/2013/04/14/nisemonogatari-and-the-nature-of-fanservice/) to be helpful in understanding this part of the show better.
 
-This post starts out with a good description of fanservice in general.
-
-"It’s bad. The way it’s normally used, it demeans and objectifies characters, and distracts/detracts from whatever a show is trying to do narrative-wise and emotionally. It makes the camera itself a lecherous observer of characters, and not simply the best framing device for the story being told. It adds to a value unrelated to a show as an artistic work, and in fact normally detracts from its artistic worth and the narrative/emotional weight of any scene. It demeans the audience as well, implying we’re unable to be entertained by the show’s actual worth, and the implications regarding my base-instinct-oriented nature colors my experience as a viewer. It proves that the creators of the show are not taking that show and its characters seriously – and if they’re not, why the fuck should I?"
-
 
 <... This post is a work in progress, check back soon for updates ..>
