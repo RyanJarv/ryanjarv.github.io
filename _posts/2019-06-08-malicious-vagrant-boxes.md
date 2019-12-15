@@ -7,15 +7,9 @@ title: Malicious vagrant boxes
 ================
 
 <p class="meta">8 June 2019 - Mojave Desert</p>
-Hey so did you know by default vagrant run's VM's in the same security context as your host operating system! Kinda wild right? So does that mean that if you tested a strange and unknown vagrant box off https://app.vagrantup.com/boxes/search you might be pwned? Absolutely!
+Did you know by default vagrant run's VM's in the same security context as your host operating system! Kinda wild right? So does that mean that if you tested a strange and unknown vagrant box off https://app.vagrantup.com/boxes/search you might be pwned? Absolutely!
 
-"WTF?"
-
-You might be asking. WTF indeed.
-
-The issue is pretty straight forward, for some reason vagrant mounts the code directory inside the VM as read/write. Normally the VM would be running your code so this wouldn't be much of a concern however this directory also contains the Vagrantfile configuration, which of course is just a ruby script and is executed everytime you run `vagrant` on the host.
-
-Kinda crazy right?
+The issue is pretty straight forward, vagrant mounts the code directory inside the VM as read/write. Normally the VM would be running your code so this wouldn't be much of a concern however this directory also contains the Vagrantfile configuration, which of course is just a ruby script and is executed every time you run `vagrant` on the host.
 
 So here's a quick example getting execution on the host from simply editing this file within the VM.
 
@@ -46,10 +40,8 @@ For details type `warranty'.
 1+1
 2
 ```
-Ouch, that’s certainly not expected for software that’s essentially a wrapper around various hypervisors.
 
-
-Now I've been meaning to make a post about this for some time, when I originally noticed this it was very difficult to find *any* mention of this which is a bit unfortantate. For a while I've been using the following workaround, which I admit isn't ideal.. but still works.
+I've been meaning to make a post about this for some time, when I originally noticed this it was very difficult to find *any* mention of this which is a bit unfortunate. For a while I've been using the following workaround, which I admit isn't ideal.. but still works.
 
 ```
   config.vm.synced_folder ".", "/vagrant", disable: true
@@ -58,7 +50,7 @@ Now I've been meaning to make a post about this for some time, when I originally
 This will move the shared folder to a subfolder named vagrant under the main directory, which includes the Vagrantfile config.
 
 
-Just now though when I was writing this I was surprised to notice this warning that pops up when you run `vagrant up` the very first time on your computer (but not after that! Well specifically only the first time for each box, but.. still).
+Just now though when I was writing this I was surprised to notice this warning that pops up when you run `vagrant up` the very first time on your computer (but not after that! Well specifically only the first time for each box).
 
 ```
 Vagrant is currently configured to create VirtualBox synced folders with
@@ -113,4 +105,4 @@ drwxr-xr-x   4 jarv  wheel   128B Jun  8 00:33 .vagrant
 host$ 
 ```
 
-So it looks like that fixes the issue, but also doesn't seem to share the code directory.. which limit's the usefullness of vagrant I would imagine. Ideally I think the share should just mount as readonly, seems like the simplest safe solution.
+So it looks like that fixes the issue, but also doesn't seem to share the code directory.. which limit's the usefulness of vagrant I would imagine. Ideally I think the share should just mount as readonly, seems like the simplest safe solution.
