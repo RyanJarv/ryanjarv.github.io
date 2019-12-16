@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/jarv
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.ryanjarv.sh
+  * I am jarv (https://keybase.io/jarv) on keybase.
+  * I have a public key ASDIjYxl8BdEVm_pPig8nwf4A6HRx7U8V9Gng_r8H2UtNAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01200e6d1cf9ca2c5fc471d4ad10f73f2c1bb8b43feb1812934a8056fb5f785cebeb0a",
+      "host": "keybase.io",
+      "kid": "0120c88d8c65f01744566fe93e283c9f07f803a1d1c7b53c57d1a783fafc1f652d340a",
+      "uid": "728aa1f7c0651531e1fa13f73eb08019",
+      "username": "jarv"
+    },
+    "merkle_root": {
+      "ctime": 1576531138,
+      "hash": "72781fddc8adb509c7ce94c0e1438e0a74ebc829d38a344aa0e7d8f770cebdf0d9776ea92212370317c9ebeb3455dcf07ccf66f6716e4dd8c2aad0ce30437abf",
+      "hash_meta": "b141e5573424e8a771261887758689769719bd61be15909868d2563fbebdb87a",
+      "seqno": 13666706
+    },
+    "service": {
+      "entropy": "ycndpw8j/hMVwBIVLMzYvsGh",
+      "hostname": "blog.ryanjarv.sh",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.6.0"
+  },
+  "ctime": 1576531151,
+  "expire_in": 504576000,
+  "prev": "eb5a7cb854cf0eb0b485a27a524cacd9792817d5ff7407976873594ac9326aa6",
+  "seqno": 94,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgyI2MZfAXRFZv6T4oPJ8H+AOh0ce1PFfRp4P6/B9lLTQKp3BheWxvYWTESpcCXsQg61p8uFTPDrC0haJ6Ukys2XkoF9X/dAeXaHNZSskyaqbEIJ/9q9NQgvsFSo4SvmZB1naBaWjCsMFWZItVRwF5hj2wAgHCo3NpZ8RAuwt8mStABN/Ms8m923LHFVvnkgWoBEZ96IqHiWz3EJmck20eYX/sViDSfW7lF1zUFT4v/zamyHLWQG9X3D/QAKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIANPIN4yGX4YwMbekFhZoA7Qk5AKrPlwn3HsE+ZeWkzZo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jarv
+
+==================================================================
