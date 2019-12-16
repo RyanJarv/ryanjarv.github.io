@@ -3,3 +3,4 @@ defaults:
       path: "resumes"
     values:
       pdf: true
+include: [".well-known"]
