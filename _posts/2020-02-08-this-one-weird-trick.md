@@ -22,16 +22,18 @@ Honestly some of these use cases are hard to argue against. For the average comp
 
 Some time later the cluster of app nodes isn't scaling as well as you hoped and you decide you need to throw a cache or CDN in front of it all. Simple, just make a free CloudFlare account, point it to your LB and reconfigure DNS. Now with out realizing it you've now allowed anyone to impersonate any IP and the original whitelisting idea that didn't seem so bad is a bid scarier.
 
-(does cloudflare block X-Forwarded-For? Well whatever any local cache, nginx/varnish will just append so it's at least an issue in those cases.)
+(does cloudflare block X-Forwarded-For? I think so unless this has changed recently, need to check this.)
 
 Ok that's fine, we got lucky and realized this is an issue. Let's just block X-Forwarded-For at the edge. That's done and everything is secure now right?
+
+Not necessarily. If you are using [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and didn't set `real_ip_header` correctly and are not blocking origins other then your CDN then anyone can find the backend IP then X-Forwarded-For isn't being blocked.
 
 ```
 curl -H 'X-Forwarded-For: 127.0.0.1' -H 'Host: example.com' <backend ip>
 ```
 
-If you are still allowing traffic from anywhere but where X-Forwarded-For is being filtered, then no, not really. If anyone can find the backend IP then X-Forwarded-For isn't being blocked.
+So specifically in this example case `real_ip_header` is being used along side `real_ip_recursive` set to on (won't get the right IP otherwise) and no `set_real_ip_from` and/or a simple varnish configuration is set that prepends the real IP to the list of X-Forwarded-For before forwarding the request along.
 
-To make this worse configuration settings around this are not exactly straightforward (thinking nginx/varnish, need to look at this again though). Specifically you either need to explicitly block all traffic not coming from where X-Forwarded-For is filtered, or make sure to keep track of all trusted CDN/Cache IP's and set them as the last trusted hop when appending to X-Forwarded-For. Both of these, at least in the case of using CloudFlare means pulling edge IP's and dynamically updating nginx/varnish configuration.
+To fix this you either need to explicitly block all traffic not coming from where X-Forwarded-For is filtered, or make sure to keep track of all trusted CDN/Cache IP's and set them as the last trusted hop when appending to X-Forwarded-For. Both of these, at least in the case of using CloudFlare means pulling edge IP's and dynamically updating nginx/varnish configuration, which isn't exactly ideal.
 
 (this post is mostly from memory right now. will update and be adding more to this soon once I dig into it again)
