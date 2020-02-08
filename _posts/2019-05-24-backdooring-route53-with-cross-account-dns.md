@@ -18,7 +18,7 @@ So what does this look like your wondering?
 
 Now when any node using dynamic DNS in the victim's VPC makes a request for 'www.example.com' the malicious record with the CNAME www.evil-attacker.com is returned. This is of course expected since this is the normal process to share hosted zone's across accounts. The problem is the owner of the main account doesn't have access to the evil account or any ability to enumerate it, preventing any way of auditing the configuration of this shared hosted zone through the API.
 
-(Note: I've recently heard this actually show's up in the web interface. I haven't verified this but if it's the case then this issue is limited to using the API. This is fairly common though as you can't expect people to manually go through dozens of accounts and verify resources manually.)
+(Note: <s>I've recently heard this actually show's up in the web interface. I haven't verified this but if it's the case then this issue is limited to using the API. This is fairly common though as you can't expect people to manually go through dozens of accounts and verify resources manually.</s> Looking into this again I haven't been able to find where this might show up, seems for now the best option is to watch for this API call via CloudWatch.)
 
 So how does enumeration of these resources work currently?
 
@@ -74,7 +74,7 @@ aws route53 disassociate-vpc-from-hosted-zone --vpc 'VPCRegion=us-west-1,VPCId=v
 
 Checkmate. Attacker controls DNS without risk of being detected through the API. Furthermore dissociation can be prevented by the attacker, requiring manual intervention from AWS support.
 
-Note: This was reported and acknowledged by AWS security when I originally discovered the issue, I'm not currently aware of any timeline on fixing it. I also want to mention again here that it seems this isn't an issue through the web console, so it is possible to manually verify your account isn't affected by this.
+Note: This was reported and acknowledged by AWS security when I originally discovered the issue, I'm not currently aware of any timeline on fixing it. <s>I also want to mention again here that it seems this isn't an issue through the web console, so it is possible to manually verify your account isn't affected by this.</s> Looking into this again I haven't been able to find where this might show up. I think for now the best option is to watch for this API call via CloudWatch. There is some discussion about this on [twitter](https://twitter.com/0xdabbad00/status/1225452593234640897?s=20) as well.
 
 Back to original problem, this is the core issue around implementing the route53_hosted_zone_association resource in terraform in a cross account configuration. More specifically, we need to verify the current state in the hosted zone account while configuring the resource in the target account. This is something that doesn't map well to Terraform's state tracking CRUD model where each resource is are connection's to a single account.
 
