@@ -26,7 +26,7 @@ Some time later the cluster of app nodes isn't scaling as well as you hoped and 
 
 Ok that's fine, we got lucky and realized this is an issue. Let's just block X-Forwarded-For at the edge. That's done and everything is secure now right?
 
-Not necessarily. If you are using [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and didn't set `real_ip_header` correctly and are not blocking origins other then your CDN then anyone can find the backend IP then X-Forwarded-For isn't being blocked.
+Not necessarily. If you are using [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) and didn't set `set_real_ip_from` correctly and are not blocking origins other then your CDN then anyone can find the backend IP then X-Forwarded-For isn't being blocked.
 
 ```
 curl -H 'X-Forwarded-For: 127.0.0.1' -H 'Host: example.com' <backend ip>
