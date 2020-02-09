@@ -32,8 +32,13 @@ Not necessarily. If you are using [ngx_http_realip_module](https://nginx.org/en/
 curl -H 'X-Forwarded-For: 127.0.0.1' -H 'Host: example.com' <backend ip>
 ```
 
-So specifically in this example case `real_ip_header` is being used along side `real_ip_recursive` set to on (won't get the right IP otherwise) and no `set_real_ip_from` and/or a simple varnish configuration is set that prepends the real IP to the list of X-Forwarded-For before forwarding the request along.
+So specifically in this example case `real_ip_header` is being used along side `real_ip_recursive` set to on (won't get the right IP otherwise) and no `set_real_ip_from` and/or a simple varnish configuration is set that prepends the real IP to the list of X-Forwarded-For before forwarding the request along. If you are reading the X-Forwarded-For header directly this is almost certainly an issue as well.
 
 To fix this you either need to explicitly block all traffic not coming from where X-Forwarded-For is filtered, or make sure to keep track of all trusted CDN/Cache IP's and set them as the last trusted hop when appending to X-Forwarded-For. Both of these, at least in the case of using CloudFlare means pulling edge IP's and dynamically updating nginx/varnish configuration, which isn't exactly ideal.
+
+In the case code is reading X-Forwarded-For directly you want to start at the right most IP address in the list, if it falls in the range of a proxy that you control then throw it away and grab the next one until you find an untrusted IP. The first untrusted IP will be what you want to use as the client's real IP.
+
+The reason I think this is a commonly overlooked issue is because support for X-Forwarded-For can be done either on the dev or ops side of things, requires a strong understanding of how the infrastructure is set up to catch, and it often isn't clear how and when the client's IP is actually being used by the app. The problem isn't talked about often and there is no warning about this in relevant documentation (thinking https://nginx.org/en/docs/http/ngx_http_realip_module.html but there's plenty of other cases as well, maybe I need to make a PR for this). Even if you do know about this issue the seemingly obvious fixes (blocking X-Forwarded-For) are only partially effective. So there's a lot of things going on here that make this easy to miss.
+
 
 (this post is mostly from memory right now. will update and be adding more to this soon once I dig into it again)
