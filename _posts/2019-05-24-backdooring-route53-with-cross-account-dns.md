@@ -29,7 +29,7 @@ So assuming you did know the ID (which you won't) this is what you end up gettin
 aws route53 get-hosted-zone --id /hostedzone/Z2A3GARM5EV7XX An error occurred (AccessDenied) when calling the GetHostedZone operation: User: arn:aws:sts::633876015373:assumed-role/OrganizationAccountAccessRole/1557793151797411000 is not authorized to access this resource
 ```
 
-Further more ListHostedZones in the target or victims account doesn't show anything, which is unfortunately misleading. In this example I currently have a cross-account hosted zone associated with one of my VPC's redirecting traffic from www.example.com to www.evil-attacker.com.
+ListHostedZones in the target or victims account doesn't show anything, which is unfortunately misleading. In this example I currently have a cross-account hosted zone associated with one of my VPC's redirecting traffic from www.example.com to www.evil-attacker.com.
 ```
 aws route53 list-hosted-zones
 {
