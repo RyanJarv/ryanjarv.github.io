@@ -6,7 +6,14 @@ title: Backdooring Route 53 With Cross Account DNS
 {{ page.title }}
 ================
 
+## Update
+
+This issue is now resolved with the [announcement](https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListHostedZonesByVPC.html) of the [ListHostedZonesByVPC](https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListHostedZonesByVPC.html) Route53 API action!
+
+## Original
+
 <p class="meta">13 May 2019 - Somewhere</p>
+
 Back in late 2017 I was working on writing the notably missing [aws_route53_&shy;vpc_association_authorization](https://github.com/terraform-providers/terraform-provider-aws/pull/2005) provider for terraform AWS when I ran into a fairly annoying issue with the cross account Route 53 hosted zone association process: The Route 53 API in a cross account setup can only display hosted zone association info when calling from the hosted zone account.
 
 This is a problem for scripting when you need to verify the state of the association without access to both accounts but the bigger and perhaps less obvious problem is it can be abused to provide persistent control over DNS from another AWS account. There isn't a whole lot to this attack, the only assumption is that the attacker, or possibly disgruntled employee, deviant third party contractor, etc.., has at one point had access to the account. Interestingly this attack is a side effect of how the API was designed and we won't be doing much other then setting up the resources how they where designed to be used, the important part is simply that the main owner of the account isn't told, or otherwise alerted possibly through API call logging that these resources where set up.
