@@ -7,7 +7,9 @@ title: Abusing the AWS SDK
 ================
 
 <p class="meta">17 October 2020 - Somewhere</p>
-A bit ago I noticed a SYN open connection from what was most likely the AWS SDK trying to connect to the IMDS service. I must have been a bit bored at the time and decided to look into how this could be abused in various scenarios. After some messing around I came up with a fairly simple PoC that allows an attacker on the local network under specific conditions to gain plain text secrets uploaded using SSM parameter store. My take away from looking into this further is if you use multiple named profiles in your config/credentials file it's a good idea to either put dummy creds in the default profile and/or make sure AWS_EC2_METADATA_DISABLED=true is set in your shell environment. In general the issue sounds worse than it is, but given the the right conditions, enough patience by the attacker, or a bit of luck the potential for damage is there.
+A bit ago I noticed a SYN open connection from what was most likely the AWS SDK trying to connect to the IMDS service. I must have been a bit bored at the time and decided to look into how this could be abused in various scenarios. After some messing around I came up with a fairly simple PoC that allows an attacker on the local network under specific conditions to gain plain text secrets uploaded using SSM parameter store.
+
+My take away from looking into this further is if you use multiple named profiles in your config/credentials file it's a good idea to either put dummy creds in the default profile and/or make sure AWS_EC2_METADATA_DISABLED=true is set in your shell environment. In general the issue sounds worse than it is, but given the the right conditions, enough patience by the attacker, or a bit of luck the potential for damage is there.
 
 This issue ended up affecting me by default since I've gotten in the habit of never setting a default profile to avoid accidentally connecting to the wrong account. It seems I'm not the only person that does this either, found a few people suggesting the same thing.
 
