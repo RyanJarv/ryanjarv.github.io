@@ -14,7 +14,7 @@ This issue ended up affecting me by default since I've gotten in the habit of ne
 Including these links just to show it's not all that uncommon to set your config up this way. If it wasn't for this IMDS gotcha this would actually a very smart thing to do.
 
 * [multiple-aws-profiles](https://mads-hartmann.com/2017/04/27/multiple-aws-profiles.html#dont-have-a-default-profile)
-* [short-how2tips-aws-using-multiple-profiles](https://knplabs.com/en/blog/short-how2tips-aws-using-multiple-profiles)
+* [short-how2tips-aws-using-multiple-profiles](https://knplabs.com/en/blog/short-how2tips-aws-using-multiple-profiles#aws-profiles)
 * [stackoverflow comment](https://stackoverflow.com/a/37866692)
 
 When you perform any action the AWS SDK makes a lookup to the IMDS server if you didn't specify a profile and it can't find the credentials locally. Usually this tends to result in a long delay before the API call fails.
