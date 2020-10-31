@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Coercing data from the AWS SDK client on the local network
+title: Abusing the AWS SDK
 ---
 
 {{ page.title }}
