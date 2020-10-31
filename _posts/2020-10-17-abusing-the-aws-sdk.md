@@ -13,7 +13,7 @@ My take away from looking into this further is if you use multiple named profile
 
 This issue ended up affecting me by default since I've gotten in the habit of never setting a default profile to avoid accidentally connecting to the wrong account. It seems I'm not the only person that does this either, found a few people suggesting the same thing.
 
-Note: I sent off emails to see if we can get these posts updated with a recommendation to set `AWS_EC2_METADATA_DISABLED=true` in the environment, granted I really should have done earlier so if they aren't updated by the time you read this that's probably my fault. On the StackOverflow if anyone minds adding a comment about this there that would be much appreciated.
+Note: I sent off emails to see if we can get these posts updated with a recommendation to set `AWS_EC2_METADATA_DISABLED=true` in the environment, granted I really should have done earlier so if they aren't updated by the time you read this that's probably my fault. On the StackOverflow one if anyone minds adding a comment about this there that would be much appreciated.
 
 Anyways I really just wanted to include these links just to show it's not all that uncommon to set your config up this way. If it wasn't for this IMDS gotcha this would actually a very smart thing to do.
 
