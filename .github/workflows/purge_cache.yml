@@ -5,16 +5,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-
-    # Put steps here to build your site, deploy it to a service, etc.
-
     - name: Purge cache
       uses: jakejarvis/cloudflare-purge-action@master
       env:
-        # Zone is required by both authentication methods
-        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
-
-        CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
-        # ...or:
         CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
         CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
