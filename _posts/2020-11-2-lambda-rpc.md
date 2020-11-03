@@ -10,7 +10,9 @@ title: Cross Cloud Lambda RPC
 
 Recently I've had this idea stuck in my head revolving around something of a cross cloud platform RPC library for lambda. Now I don't really have a need for this but, none the less I can't get it out of my head so I keep coming back to it. I also keep getting stuck in the same place, so going to try to write down my thoughts here instead for now.
 
-When most people think multi-cloud they focus on common limiting to resources, potentially building another cloud across them wth Kubernetes and most likely a service mesh. I feel like this approach, at the FaaS layer, could achieve the same goal for certain workloads in a much simpler way. The main reason though why I like this idea though is that we'll likely see cloud's specialize in certain area's to attract customer's. Having an easy way to utilize any of these services while minimizing the over head of working in multiple clouds seems particularly appealing.
+When most people think multi-cloud they focus on common limiting to resources, potentially building another cloud across them wth Kubernetes and most likely a service mesh. I feel like this approach, at the FaaS layer, could achieve the same goal for certain workloads in a much simpler way.
+
+The main reason though why I like this idea though is that we'll likely see cloud's specialize in certain area's to attract customer's. Having an easy way to utilize any of these services while minimizing the over head of working in multiple clouds seems particularly appealing.
 
 For this to make sense though I felt I needed to these goals:
 
