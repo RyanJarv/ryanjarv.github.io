@@ -19,7 +19,7 @@ For this to make sense though I felt I needed to these goals:
 * No infrastructure
 * Secure
 
-[Initial idea](https://app.lucidchart.com/lucidchart/a2c9824c-123c-4a3c-9ce8-a4f16b9de133/view?page=AMCKckaM4VwE#?folder_id=home&browser=icon)
+<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://app.lucidchart.com/documents/embeddedchart/a2c9824c-123c-4a3c-9ce8-a4f16b9de133" id="ReIK-GaHiRGH"></iframe></div>
 
 Here we have just a library that sit's on top of the native cloud SDK's, add's a http like addressing scheme and translates those http call's to the underlying SDK's method of calling functions. inda stupid really, but it does what we want.
 
