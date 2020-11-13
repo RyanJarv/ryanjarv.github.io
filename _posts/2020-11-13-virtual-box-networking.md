@@ -19,11 +19,23 @@ The default configuration of VirtualBox allows the guest to access the hosts loo
 
 So what does this mean?
 
-Say you're running [Tails](https://tails.boum.org/) in VirtualBox on your laptop you use for day to day work.
+Say you're running [Tails](https://tails.boum.org/) in VirtualBox on your laptop you use for day to day work. An attacker somehow is able to open socket's to the 10.0.2.2 address from within the VM.
+
+Sending packets to this magical IP from within the VM show's up on the host as packet's from localhost <-> localhost
+
+So when we connect from within the guest VM to 10.0.2.2:6942 like so:
 
 <img src="{{site.baseurl}}/images/tails.png">
 
-Unfortunately I left GoLand running here on my host machine which apparently likes to spit out my name it's path. So given that an attacker can hit that port, through JavaScript or RCE to the guest machine they can start probing port's that are only bound to your hosts loopback adapter.
+We'll see something like this when running tcpdump on the host's loopback adapter.
+
+```
+07:34:15.998866 IP localhost.55231 > localhost.6942: Flags [F.], seq 1, ack 121, win 6377, options [nop,nop,TS val 789867426 ecr 789867426], length 0
+```
+
+In the picture above you can see I left GoLand running on my host machine which apparently likes to spit out my name in it's path. This was only the fist port I attempted, far too many app's make the assumption that localhost is safe. Getting RCE on the host from this position would likely not be too difficult.
+
+So given that an attacker can hit that port, through JavaScript or RCE to the guest machine they can start probing port's that are only bound to your hosts loopback adapter. 
 
 From my understanding (which granted is fairly limited) this happens because the NAT driver in VirtualBox is emulated entirely in software. There's no difference between packets coming from the NAT software itself and any other program on your host, so all apps regardless of if they are running on your Host or in the VM have access to the hosts loopback device.
 
