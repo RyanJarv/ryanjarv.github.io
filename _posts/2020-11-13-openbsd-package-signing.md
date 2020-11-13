@@ -17,13 +17,12 @@ This clearly defeats the purpose of signing, assuming an attacker can modify pac
 
 Anyways I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD devs, I don't remember much about for what it's worth it did seem like the tweet might have gotten to get to the right person since it wasn't too long after that the issue was resolved with the addition of signify(1). 
 
-I really need to find that tweet.. now that I'm writing about this. Maybe amongst some old backups, will see.
+I'll try to find that twitter post, since I'm really curious if that was what prompted this change. Maybe it'll be amongst some old backups, will see.
 
 On second thought I suppose it's gotta be online somewhere, it is the interenet after all.
 
 <p class="meta">pkg_add(1) history</p>
 
-I'll try to find that twitter post, since I'm really curious if that was what prompted this change.
 
 
 In OpenBSD 5.4 and before [pkg_add](https://man.openbsd.org/OpenBSD-5.4/pkg_add.1) you have the -D nosig option, which I believe only disables signing on a signed package and has no effect on non-signed packages.
