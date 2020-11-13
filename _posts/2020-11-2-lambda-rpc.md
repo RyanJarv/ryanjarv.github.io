@@ -14,7 +14,7 @@ title: Inherit Cross Cloud Provider Trust
 
 Recently I've had this idea stuck in my head revolving around something of a cross cloud platform RPC library for lambda. Now I don't really have a need for this but, none the less I can't get it out of my head so I keep coming back to it. I also keep getting stuck in the same place, so going to try to write down my thoughts here instead for now.
 
-When most people think multi-cloud they focus on common limiting to resources, potentially building another cloud across them wth Kubernetes and most likely a service mesh. I feel like this approach, at the FaaS layer, could achieve the same goal for certain workloads in a much simpler way.
+When most people think multi-cloud they focus on common limiting to resources, potentially building another cloud across them with Kubernetes and most likely a service mesh. I feel like this approach, at the FaaS layer, could achieve the same goal for certain workloads in a much simpler way.
 
 For this to make sense though I felt I needed to these goals:
 
@@ -26,7 +26,7 @@ For this to make sense though I felt I needed to these goals:
 <div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://app.lucidchart.com/documents/embeddedchart/a2c9824c-123c-4a3c-9ce8-a4f16b9de133" id="ReIK-GaHiRGH"></iframe></div>
 
 
-Here we have just a library that sit's on top of the native cloud SDK's, add's a http like addressing scheme and translates those http call's to the underlying SDK's method of calling functions. It's stupid really, but it does what we want.
+Here we have just a library that sits on top of the native cloud SDKs, adds a http like addressing scheme and translates those http call's to the underlying SDKs method of calling functions. It's stupid really, but it does what we want.
 
 The obvious problem here is how do we handle authentication and authorization, basically bootstrapping these functions.
 

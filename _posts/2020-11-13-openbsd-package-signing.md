@@ -15,7 +15,7 @@ Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did support sign pac
 
 This clearly defeats the purpose of signing, assuming an attacker can modify packages, you also have to assume they can simply remove the signature. This baffled me, enough so that I decided to stick with FreeBSD a while longer. I was also fairly new to the IT field and the knowledge that everything is a hack hadn't quite set in yet, even somethings in the notoriously secure OpenBSD I had heard so much about.
 
-Anyways I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD devs, I don't remember much about for what it's worth it did seem like the tweet might have gotten to get to the right person since it wasn't too long after that the issue was resolved with the addition of signify(1). 
+Anyways I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD Devs, I don't remember much about for what it's worth it did seem like the tweet might have gotten to get to the right person since it wasn't too long after that the issue was resolved with the addition of signify(1). 
 
 I'll try to find that twitter post, since I'm really curious if that was what prompted this change. Maybe it'll be amongst some old backups, will see.
 
@@ -61,7 +61,7 @@ By default, pkg_add enforces signed packages, except if they come from a trusted
 
 <p class="meta">Enough picking on OpenBSD</p>
 
-I'll wrap this up with giving them a bit a slack, handling pkg'ing in the BSD systems around that time typically wasn't done like we think of it in most linux systems. The recommended way to install anything I believe is to build it from source, or install it from local media. So the whole pkg_add thing for both OpenBSD and FreeBSD at the time seems more like a rough edge newbies might cut them selfs on more then anything, but that's kinda just my guess.
+I'll wrap this up with giving them a bit a slack, handling packaging in the BSD systems around that time typically wasn't done like we think of it in most linux systems. The recommended way to install anything I believe is to build it from source, or install it from local media. So the whole pkg_add thing for both OpenBSD and FreeBSD at the time seems more like a rough edge newbies might cut them selfs on more then anything, but that's kinda just my guess.
 
 But really it wasn't just OpenBSD that got in the poor habit of weak or even no package validation.
 
