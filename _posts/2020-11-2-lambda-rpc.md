@@ -1,10 +1,14 @@
 ---
 layout: post
 <<<<<<< HEAD
+<<<<<<< HEAD
 title: Cross Cloud Lambda RPC
 =======
 title: Inherit Cross Cloud Provider Trust
 >>>>>>> 4d7ac76 (Add lambda rpc post)
+=======
+title: Cross Cloud Lambda RPC
+>>>>>>> f4763a3 (Spelling)
 ---
 
 {{ page.title }}
@@ -12,7 +16,7 @@ title: Inherit Cross Cloud Provider Trust
 
 <p class="meta">2 November 2020 - Somewhere</p>
 
-Recently I've had this idea stuck in my head revolving around something of a cross cloud platform RPC library for lambda. Now I don't really have a need for this but, none the less I can't get it out of my head so I keep coming back to it. I also keep getting stuck in the same place, so going to try to write down my thoughts here instead for now.
+Recently I've had this idea stuck in my head revolving around something of a cross cloud platform RPC library for lambda. Now I don't really have a need for this but, none the less I can't get it ut of my head so I keep coming back to it. I also keep getting stuck in the same place, so going to try to write down my thoughts here instead for now.
 
 When most people think multi-cloud they focus on common limiting to resources, potentially building another cloud across them with Kubernetes and most likely a service mesh. I feel like this approach, at the FaaS layer, could achieve the same goal for certain workloads in a much simpler way.
 
@@ -30,6 +34,6 @@ Here we have just a library that sits on top of the native cloud SDKs, adds a ht
 
 The obvious problem here is how do we handle authentication and authorization, basically bootstrapping these functions.
 
-This is where I'm stuck on this right now because for whatever reason I have an aversion to SAML and OpenID.. something about repressed memories or whatever. I keep trying come up with some other clever way of getting the right token's in the right place's in a secure/simple to understand way, but so far haven't come up with anything.
+This is where I'm stuck on this right now because for whatever reason I have an aversion to SAML and OpenID.. something about repressed memories or whatever. I keep trying come up with ome other clever way of getting the right token's in the right place's in a secure/simple to understand way, but so far haven't come up with anything.
 
 Anyways thinking over this I suspect I just need to get over my fears of SAML, OpenID, etc and see if I can sort this out that way. I'll probably be setting this aside for now but if you have any thoughts on what would work here though let me know (@ryan_jarv on twitter).
