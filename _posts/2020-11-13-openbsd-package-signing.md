@@ -11,15 +11,15 @@ I'll admit this is a bit strange for me to bring up now, it's already been 7 yea
 
 To be clear this issue has been fixed in OpenBSD for quite some time now, specifically with the addition of signify(1). Also, grain of salt, I'm writing mostly from memory here.
 
-Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did support sign packages via pkg_add, but they where not explicitly enforced. As in you can use pkg_add to download a package, and it will verify the signature if it exists, but if it doesn't then that's not an issue either.
+Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did support sign packages via pkg_add, but they where not explicitly enforced. As in you can use pkg_add to download a package, and it will verify the signature if it exists, but if it doesn't than that's not an issue either.
 
-This clearly defeats the purpose of signing, assuming an attacker can modify packages, you also have to assume they can simply remove the signature. This baffled me, enough so that I decided to stick with FreeBSD a while longer. I was also fairly new to the IT field and the knowledge that everything is a hack hadn't quite set in yet, even somethings in the notariously secure OpenBSD I had heard so much about.
+This clearly defeats the purpose of signing, assuming an attacker can modify packages, you also have to assume they can simply remove the signature. This baffled me, enough so that I decided to stick with FreeBSD a while longer. I was also fairly new to the IT field and the knowledge that everything is a hack hadn't quite set in yet, even somethings in the notoriously secure OpenBSD I had heard so much about.
 
 Anyways I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD devs, I don't remember much about for what it's worth it did seem like the tweet might have gotten to get to the right person since it wasn't too long after that the issue was resolved with the addition of signify(1). 
 
 I'll try to find that twitter post, since I'm really curious if that was what prompted this change. Maybe it'll be amongst some old backups, will see.
 
-On second thought I suppose it's gotta be online somewhere, it is the interenet after all.
+On second thought I suppose it's gotta be online somewhere, it is the Internet after all.
 
 <p class="meta">pkg_add(1) history</p>
 
@@ -71,7 +71,7 @@ FreeBSD did also do a quick switch to to the much much nicer [pkg(1)](https://ww
 
 Oh and can't forget about Arch Linux, I never used that though so can't say too much there. Similar issue though from what I recall, just no verification on install.
 
-Occasionally I see package validation disabled on various systems for various reasons, feel like it's more common with RHEL then debian. But idk, that's a different thing I guess.
+Occasionally I see package validation disabled on various systems for various reasons, feel like it's more common with RHEL then Debian. But idk, that's a different thing I guess.
 
 <p class="meta">Take aways</p>
 
