@@ -1,6 +1,6 @@
 ---
 layout: post
-title: AWS IMDS Persistence/Priv Escalation
+title: VirtualBox NAT and your Loopback Interface
 ---
 
 {{ page.title }}
