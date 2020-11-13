@@ -7,7 +7,11 @@ title: Malicious vagrant boxes
 ================
 
 <p class="meta">8 June 2019 - Mojave Desert</p>
-Did you know by default vagrant run's VMs in the same security context as your host operating system! Kinda wild right? So does that mean that if you tested a strange and unknown vagrant box off https://app.vagrantup.com/boxes/search you might be pwned? Absolutely!
+Did you know by default vagrant run's VMs in the same security context as your host operating system?
+
+So if you tested a strange and unknown vagrant box off https://app.vagrantup.com/boxes/search, you're unfortunately not limiting the blast radius to the VM as your host could now be compromised as well.
+
+To be clear I'm not aware of any cases where this has happened, just that it's possible and something worth watching out for.
 
 The issue is pretty straight forward, vagrant mounts the code directory inside the VM as read/write. Normally the VM would be running your code so this wouldn't be much of a concern however this directory also contains the Vagrantfile configuration, which of course is just a ruby script and is executed every time you run `vagrant` on the host.
 
@@ -44,7 +48,7 @@ For details type `warranty'.
 I've been meaning to make a post about this for some time, when I originally noticed this it was very difficult to find *any* mention of this which is a bit unfortunate. For a while I've been using the following workaround, which I admit isn't ideal.. but still works.
 
 ```
-  config.vm.synced_folder ".", "/vagrant", disable: true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "vagrant", "/vagrant"
 ```
 This will move the shared folder to a sub-folder named vagrant under the main directory, which includes the Vagrantfile config.
