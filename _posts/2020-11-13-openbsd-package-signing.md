@@ -9,7 +9,7 @@ title: Why I didn't switch OpenBSD (in 2013)
 <p class="meta">13 November 2020 - Somewhere</p>
 I'll admit this is a bit strange for me to bring up now, it's already been 7 years. But the thing is I need a job.. so I'm going back and digging up any scraps I can pass off as some meager claim to fame.
 
-To be clear this issue has been fixed in OpenBSD for quite some time now, specifically with the addition of signify(1) iirc. And fair warning I never actually tested this, maybe I should go back and try this before I speak to confidentally, so worth taking all this with a grain of salt.. writing mostly from memory here. At the very least though, whether right or wrong this is why I never ended actually digging into OpenBSD too much.
+To be clear this issue has been fixed in OpenBSD for quite some time now, specifically with the addition of signify(1). Also grain of salt, writing mostly from memory here. But whether right or wrong this is why I never ended actually digging into OpenBSD too much back in the day.
 
 Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did support sign packages via pkg_add, but they where not explicitly enforced. As in you can use pkg_add to download a package, and it will verify the signature if it exists, but if it doesn't then that's not an issue either.
 
