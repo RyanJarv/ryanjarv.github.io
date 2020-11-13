@@ -76,7 +76,7 @@ Accept-Encoding: identity
 User-Agent: aws-cli/2.0.50 Python/3.8.5 Darwin/19.6.0 source/x86_64
 ```
 
-Taking this a step further we can actually serve the victim another set of credentials of our choosing which will cause the SDK to connect to an account we control. For this to be useful to us the API called by the victim must use relative naming schemes for parameters (i.e. no ARN's) as well as upload sensitive info. One that fit's this description is the SSM parameter PutParameter call.
+Taking this a step further we can actually serve the victim another set of credentials of our choosing which will cause the SDK to connect to an account we control. For this to be useful to us the API called by the victim must use relative naming schemes for parameters (i.e. no ARNs) as well as upload sensitive info. One that fit's this description is the SSM parameter PutParameter call.
 
 
 Testing this out is fairly simple. Here we're doing the same thing as before but using aws-vault's server feature to feed back credentials to the victim. Typically aws-vault will only bind on localhost but we can force it to skip this step by adding the 169.254.169.254 IP beforehand.
@@ -92,7 +92,7 @@ If the victim run's STS GetCallerIdentity and happens to trigger an IMDS lookup 
 
 This would be a not so great situation, but to reiterate, getting to this point requires both the IMDS lookup to be triggered when it shouldn't have, as well as the victim running an API call that is susceptible to this. Unless you are able to determine through some other means what API call a client is going to make and when they will most likely notice something is not right, the tool they are using will fail or behave strangely.
 
-Personally though I think this could use more eye's looking into how feasible this attack might be. For example it may be worth looking into what would happen if ARN's are constructed from the STS GetCallerIdentity call, something that is fairly common when running terraform. If there is any situations where an attacker might have access to the running process list or tracing privileges to the running app then this may be more effective as well.
+Personally though I think this could use more eye's looking into how feasible this attack might be. For example it may be worth looking into what would happen if ARNs are constructed from the STS GetCallerIdentity call, something that is fairly common when running terraform. If there is any situations where an attacker might have access to the running process list or tracing privileges to the running app then this may be more effective as well.
 
 One last thing to note is for OS's that send 169.254.169.254 to the default route the same situation comes up further upstream, allowing an attacker in a privileged position on the network to do the same thing across multiple subnets. Link local addresses in theory should be filtered, so *hopefully* outside of any network misconfigurations this wouldn't come up.
 
