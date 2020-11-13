@@ -20,8 +20,6 @@ If you think of AWS as very large, always on computer you can kinda throw togeth
 
 [IMDS Persistence/Priv Escalation Diagram](https://app.lucidchart.com/lucidchart/4c4c146d-e9c5-4bae-9553-9c65b37aad7a/view?page=0_0#?folder_id=home&browser=icon)
 
-<div style="width: 960px; height: 720px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:960px; height:720px" src="https://app.lucidchart.com/documents/embeddedchart/4c4c146d-e9c5-4bae-9553-9c65b37aad7a" id="HbJNp7Dk3dsH"></iframe></div>
-
 The PoC I put together for this ended up being seamless in my limited testing, added about a minute to the boot time to root it, and then executed the normal user-data as expected on re-init. Since the modified route table applies to all instances in a given subnet this may be more noisy in practice though.
 
 Think the take away here is to restrict access to routing table related API's and to monitor or possibly alert on any changes.
