@@ -1,14 +1,6 @@
 ---
 layout: post
-<<<<<<< HEAD
-<<<<<<< HEAD
 title: Cross Cloud Lambda RPC
-=======
-title: Inherit Cross Cloud Provider Trust
->>>>>>> 4d7ac76 (Add lambda rpc post)
-=======
-title: Cross Cloud Lambda RPC
->>>>>>> f4763a3 (Spelling)
 ---
 
 {{ page.title }}
