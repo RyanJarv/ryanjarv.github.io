@@ -7,13 +7,13 @@ title: VirtualBox NAT and your Loopback Interface
 ================
 
 <p class="meta">19 October 2020 - Somewhere</p>
-I'm just catching up on old posts that I should have written a while ago, and of course this is no different. I actually almost forgot about this, but it is very important if you use VirtualBox for compartmentalization.
+I'm just catching up on old posts that I should have written a while ago, and of course this is no different. I actually almost forgot about this, somehow, unfortunately, because it is actually pretty important if you use VirtualBox for compartmentalization.
 
 ###  Overview and quick fix
 
-To keep things brief if you using a guest VM like [Tails](https://tails.boum.org/) and VirtualBox to provide anonmity you should go to your settings and make sure you are not using the "NAT" interface type. If you never changed this manually, it is most likely set up this way.
+To keep things brief if you using a guest VM guest like [Tails](https://tails.boum.org/) with VirtualBox to provide anonymity you should go to your settings and make sure you are not using the "NAT" interface type. If you never changed this manually, it is most likely set up this way.
 
-###  The Rest
+###  The Issue
 
 The default configuration of VirtualBox allows the guest to access the hosts loopback adapter.
 
