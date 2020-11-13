@@ -67,7 +67,7 @@ But really it wasn't just OpenBSD that got in the poor habit of weak or even no 
 
 If you take a look at FreeBSD's [pkg_add(1)](https://www.freebsd.org/cgi/man.cgi?query=pkg_add&apropos=0&sektion=0&manpath=FreeBSD+9.3-RELEASE&arch=default&format=html) (something I know a little more about) there's no mention of any signing there either, granted they at least had a clear warning in the man page. At the time the recommendation was mostly the same as OpenBSD, build everything through ports, which has a robust validation system and use pkg_add for local media (or something along those lines).
 
-FreeBSD did also do a quick switch to to the much much nicer nicer [pkg(1)](https://www.freebsd.org/cgi/man.cgi?query=pkg&apropos=0&sektion=0&manpath=FreeBSD+10.0-RELEASE&arch=default&format=html) in the next release, and validation is documented on the 10.1 release (although I believe it existed on 10.0 as well, not positive).
+FreeBSD did also do a quick switch to to the much much nicer [pkg(1)](https://www.freebsd.org/cgi/man.cgi?query=pkg&apropos=0&sektion=0&manpath=FreeBSD+10.0-RELEASE&arch=default&format=html) in the next release, and validation is documented on the 10.1 release (although I believe it existed on 10.0 as well, not positive).
 
 Oh and can't forget about Arch Linux, I never used that though so can't say too much there. Similar issue though from what I recall, just no verification on install.
 
