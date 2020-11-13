@@ -43,13 +43,9 @@ This behavior is pretty convenient from an attackers perspective since access ca
 
 <img src="{{site.baseurl}}/images/macos_firewall.png">
 
-I also run Little Snitch and that too unfortunately doesn't do us much good here. After messing with the settings here for a while I haven't had any success in blocking this connection. Another thing to note is the connection doesn't show up on the network monitor either. Seems little snitch simply doesn't work for traffic to the loopback adapter.
+Little Snitch seems to have the same issue as far as I can tell. It simply doesn't work on traffic to and from lo0. Blocking in /etc/pf.conf seems to work but I'm not sure if pf can block connections from a specific source app and not others. Either way though it seems the point is simply, not to use the default NAT settings in VirtualBox if you want any compartmentalization between the guest and host.
 
-Blocking in /etc/pf.conf seems to work but I'm not sure if pf can block connections from a specific source app and not others.
-
-Either way though it seems the point is simply, not to use the default NAT settings in VirtualBox if you want any compartmentalization between the guest and host.
-
-I reached out to Oracle support about this issue but unfortunately this is working as intended according to them. On top of that from some looking around on the web it seems various people use this as a feature here and there.
+I reached out to Oracle support about this issue but unfortunately this is working as intended according to them. Oracle however did update the documentation to make it clear the NAT adapter allows access to lo0 from the guest.
 
 One option that I didn't bring up when talking to them before is to create another non localhost IP on the loopback and bind to that instead. I'll have to think about that some more though.
 
