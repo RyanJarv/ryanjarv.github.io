@@ -26,6 +26,6 @@ Here we have just a library that sits on top of the native cloud SDKs, adds a ht
 
 The obvious problem here is how do we handle authentication and authorization, basically bootstrapping these functions.
 
-This is where I'm stuck on this right now because for whatever reason I have an aversion to SAML and OpenID.. something about repressed memories or whatever. I keep trying come up with ome other clever way of getting the right token's in the right place's in a secure/simple to understand way, but so far haven't come up with anything.
+This is where I'm stuck on this right now because for whatever reason I have an aversion to SAML and OpenID.. something about repressed memories or whatever. I keep trying come up with one other clever way of getting the right token's in the right place's in a secure/simple to understand way, but so far haven't come up with anything.
 
 Anyways thinking over this I suspect I just need to get over my fears of SAML, OpenID, etc and see if I can sort this out that way. I'll probably be setting this aside for now but if you have any thoughts on what would work here though let me know (@ryan_jarv on twitter).
