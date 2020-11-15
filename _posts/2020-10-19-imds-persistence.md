@@ -23,3 +23,7 @@ If you think of AWS as very large, always on computer you can kinda throw togeth
 The PoC I put together for this ended up being seamless in my limited testing, added about a minute to the boot time to root it, and then executed the normal user-data as expected on re-init. Since the modified route table applies to all instances in a given subnet this may be more noisy in practice though.
 
 Think the take away here is to restrict access to routing table related API's and to monitor or possibly alert on any changes.
+
+### Update
+
+I threw together an Config rule to check for this [here](https://github.com/RyanJarv/awsconfig#nondefaultmetadataserver).
