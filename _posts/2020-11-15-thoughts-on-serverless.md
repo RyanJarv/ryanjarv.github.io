@@ -14,8 +14,7 @@ Q: Why did the serverless movement die?
 A: It didn't. Many people where just thinking on the wrong timeline, so it made it seem like it did. We still have a long ways to go to go, in terms of UX and managing complexity but I have no doubt it's the right direction in the long run.
 
 
-Q: Serverless will never handle every use case though, right?
-</br>
+Q: Serverless will never handle every use case though, right?  
 A: Probably, our thinking around how services are designed and used will need to shift. This is also part of the reason why it will take so long to fully realize the benefits of it.
 
 
