@@ -10,4 +10,4 @@ title: Thoughts on Kubernetes
 It's insanely complex.
 
 
-Please forward complaints and comments about this statement to: me+change-my-mind@ryanjarv.sh
+Please forward complaints about this statement to: me+change-my-mind@ryanjarv.sh
