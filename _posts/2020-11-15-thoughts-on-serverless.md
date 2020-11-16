@@ -11,7 +11,7 @@ title: Thoughts on Serverless
 This is the area I'm most interested currently. I'm currently learning a lot about serverless still and this post will likely change over time.
 
 Q: Why did the serverless movement die?  
-A: It didn't. Many people where just thinking on the wrong timeline, so it made it seem like it did. We still have a long ways to go to go, in terms of UX and managing complexity but I have no doubt it's the right direction in the long run.
+A: It didn't, it just seems like it did. We still have a long ways to go to go in terms of UX and managing complexity.
 
 Q: Are you sure about that?  
 A: Yes. Also worth considering that serverless is older then most people think. It's just the name that's new. Think bigger, on a much longer timeline.
