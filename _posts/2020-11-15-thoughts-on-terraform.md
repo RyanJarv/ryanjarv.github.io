@@ -21,7 +21,7 @@ Both approaches however take considerable time in training as well as ongoing ma
 
 Ultimately unless it is all carefully managed, terraform can, in a complex infrastructure end up widening the gap between Development and and Operations unnecessarily, which is exactly what these tools where built to avoid, and can easily become a full time Job.
 
-Once you've started going down the second path there's no solution to this that's both easy and effective. That said, personally, I’ve been investigating alternative ways of managing infrastructure that I feel, at least works much better with relatively common patterns.
+Once you've started going down the second path there's no solution to this that's both nearly as easy and effective. That said, personally, I’ve been investigating alternative ways of managing infrastructure that I feel, at least works much better with relatively common patterns.
 
 [SAM](https://aws.amazon.com/serverless/sam/) for serverless is a good example, as well as [copilot](https://aws.amazon.com/containers/copilot/) for more typical containerized scheduled jobs, standalone APIs or two tier web apps. [CodeStar](https://aws.amazon.com/codestar/) in my limited experience, is amazing as well. It is effectively just SAM with CI/CD, deployment, monitoring, and a few other niceties handled for you out of the box. The key with it seems to be is to remember it is all entirely decomposable, if it turns out to be the wrong choice you simply remove the parts you don't like, replacing them with something else as necessary.
 
