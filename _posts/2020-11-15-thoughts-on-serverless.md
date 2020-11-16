@@ -6,7 +6,7 @@ title: Thoughts on Serverless
 {{ page.title }}
 ================
 
-<p class="meta">19 October 2020 - Somewhere</p>
+<p class="meta">15 November 2020 - Somewhere</p>
 
 This is the area I'm most interested currently. I'm currently learning a lot about serverless still and this post will likely change over time.
 
