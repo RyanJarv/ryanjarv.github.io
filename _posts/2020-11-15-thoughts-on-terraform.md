@@ -17,7 +17,9 @@ Not to say these aren’t achievable, but it either involves extremely knowledge
 
 If you ended attempting to carve your own path here and writing your own modules it's often very difficult for new users to write terraform code in a maintainable way as part of a larger project. I've personally made this mistake, greatly underestimating how much work goes into keeping things consistent on a team of more then one. Documentation and consistency is extremely important, and unfortunately often neglected.
 
-Ultimately unless it is all carefully managed, terraform can, in a complex infrastructure end up widening the gap between Development and and Operations unnecessarily, which is exactly what these tools where built to avoid.
+Both approaches however take considerable time in training as well as ongoing maintenance.
+
+Ultimately unless it is all carefully managed, terraform can, in a complex infrastructure end up widening the gap between Development and and Operations unnecessarily, which is exactly what these tools where built to avoid and can easily become a full time Job.
 
 Once you've started going down the second path there's no solution to this that's both easy and effective. That said, personally, I’ve been investigating alternative ways of managing infrastructure that I feel, at least works much better with relatively common patterns.
 
