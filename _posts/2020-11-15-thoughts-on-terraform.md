@@ -19,7 +19,7 @@ If you ended attempting to carve your own path here and writing your own modules
 
 Both approaches however take considerable time in training as well as ongoing maintenance.
 
-Ultimately unless it is all carefully managed, terraform can, in a complex infrastructure end up widening the gap between Development and and Operations unnecessarily, which is exactly what these tools where built to avoid and can easily become a full time Job.
+Ultimately unless it is all carefully managed, terraform can, in a complex infrastructure end up widening the gap between Development and and Operations unnecessarily, which is exactly what these tools where built to avoid, and can easily become a full time Job.
 
 Once you've started going down the second path there's no solution to this that's both easy and effective. That said, personally, I’ve been investigating alternative ways of managing infrastructure that I feel, at least works much better with relatively common patterns.
 
