@@ -6,7 +6,7 @@ title: Backdooring User Data
 {{ page.title }}
 ================
 
-<p class="meta">11 November 2020 - Somewhere</p>
+<p class="meta">27 November 2020 - Somewhere</p>
 
 Previously I did some work around creating fake IMDS servers to serve malicious userdata, you can find more info in my [AWS IMDS Persistence/Priv Escalation](https://blog.ryanjarv.sh/2020/10/19/imds-persistence.html) post. Then just yesterday I came across this post on twitter about [compromising instances via modifying userdata](https://twitter.com/Darkarnium/status/1065600704134475776?s=20). I immediately started to wonder if I had previously come up with a very round about way to do the same thing, this was brief as I started to remember how my fake IMDS scenario works, but either way @Darkarnium's method was compelling enough as an alternative that I decided to try it out.
 
