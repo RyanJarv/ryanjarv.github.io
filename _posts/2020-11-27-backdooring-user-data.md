@@ -16,7 +16,7 @@ This approach is much simpler then the Fake IMDS server, enough so I could codif
 echo "Hello from malicious user data 4 to $(whoami)" > /msg4
 ```
 
-When your new instance does come up it will have the original metadata that you deployed it with. We save it before injecting our malicous code and set it back after our code has run.
+When your new instance does come up it will have the original metadata that you deployed it with. We save it before injecting our malicious code and set it back after our code has run.
 
 Because of some limitations around when you can modify user data we end up needing to do a few full boot cycles, once for each time we modify it. This ends up taking about 2 minutes from the RunInstance api command issued to when we can log in to our rooted instance. This also could potentially cause issues depending on the user's exact configuration on startup, since they likely won't be writing their code expecting multiple restarts after initial creation.
 
@@ -44,7 +44,7 @@ Below are the permissions needed (beyond what's normally used for lambda):
 ```
 
 I'll expand on this in the future but in brief the differences from this method vs the [IMDS Persistence/Priv Escalation](https://blog.ryanjarv.sh/2020/10/19/imds-persistence.html) one is:
-* IMDS requires both less privileges and less obvious priviliges
+* IMDS requires both less privileges and less obvious privileges
 * IMDS takes about a minute less to login
 * IMDS run's before the original metadata and doesn't require any restarts  
 * UserSwap can target individual instances
