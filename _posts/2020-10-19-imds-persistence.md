@@ -11,6 +11,10 @@ A little known feature of EC2 is it's possible to override the IMDS endpoint use
 
 Additionally the magical IP of 169.254.169.254 has some interesting properties:
 
+NOTES: In addition to the documentation linked I'm fairly convinced I tested these. However this was six months ago and it's possible I was mistaken and the documentation link is referring to normal uses of IMDS traffic.
+
+More importantly though from what I've heard these are at least resolved now, I haven't had time to test this though.
+
 * Security group rules are ignored for 169.254.169.254
   * https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html (search: `don't filter traffic`)
 * Traffic mirroring does not capture traffic for 169.254.169.254
