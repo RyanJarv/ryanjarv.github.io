@@ -25,12 +25,12 @@ You can find the video of it here below, but fair warning, this was really my fi
 Hey all, here's the PoC's/posts for what I went over in the talk in case you want to dig into any of them a bit more.
 ### Main topics
 * cli-hijacker -- [PoC](https://github.com/RyanJarv/cli-hijacker-vagrant)
-* User data swap -- [PoC](https://github.com/RyanJarv/UserDataSwap), [blog post](https://blog.ryanjarv.sh/2020/11/27/backdooring-user-data.html), and orginal [Twitter Post](https://twitter.com/Darkarnium/status/1065600704134475776?s=20) where I got the idea.
+* User data swap -- [PoC](https://github.com/RyanJarv/UserDataSwap), [blog post](https://blog.ryanjarv.sh/2020/11/27/backdooring-user-data.html), and original [Twitter Post](https://twitter.com/Darkarnium/status/1065600704134475776?s=20) where I got the idea.
 * EC2FakeIMDS -- [PoC](https://github.com/RyanJarv/EC2FakeImds) and [blog post](https://blog.ryanjarv.sh/2020/10/19/imds-persistence.html)
 
 ### Talking points
 * Route53 Authorization -- [Post](https://blog.ryanjarv.sh/2019/05/24/backdooring-route53-with-cross-account-dns.html)
-* Supressing Guard Duty notifications when disabling CloudTrail -- [Twitter Post](https://twitter.com/RhinoSecurity/status/1253397992255582208?s=20))
+* Supressing Guard Duty notifications when disabling CloudTrail -- [Twitter Post](https://twitter.com/RhinoSecurity/status/1253397992255582208?s=20)
 * SSM deny listing bypass -- [Post](https://blog.ryanjarv.sh/2020/10/18/ssm-parameter-store-permissions.html)
 
 I tried to document the PoC repos fairly well, but some info is spread across my blog posts as well. I put these PoC's together kinda at the last second, so some may be more or less reliable then others. Let me know if you have questions about any of them, or anything I went over in the talk.
