@@ -34,7 +34,7 @@ I also have a config rule for detecting 169.254.169.254/32 route changes. I have
  * [GitHub link](https://github.com/RyanJarv/awsconfig#nondefaultmetadataserver)
 
 The missing API calls graph slide you can find here:
- * [Twitter post](https://twitter.com/Ryan_Jarv/status/1334765133411872768?s=20)
+ * [Twitter post](https://twitter.com/Ryan_Jarv/status/1334765133411872768?s=20) (EDIT: Also now in my [uploaded slides](https://blog.ryanjarv.sh/slides/deja-vu-in-the-cloud/#5))
 
 Found that interesting because you can kinda see that it seems AWS making a slight shift to improving existing services.
 
