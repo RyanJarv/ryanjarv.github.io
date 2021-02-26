@@ -3,4 +3,4 @@ defaults:
       path: "resumes"
     values:
       pdf: true
-include: [".well-known", "resources"]
+include: [".well-known", "resources/js"]
