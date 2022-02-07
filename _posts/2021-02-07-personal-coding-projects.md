@@ -38,10 +38,10 @@ side projects.
 * [msh](https://github.com/RyanJarv/msh) -- Multivac Shell
 
 ## Other
-* [randrust](https://github.com/RyanJarv/randrust) (Rust) -- Rust HTTP server that returns random bytes encoded with base64
-* [puppet-randrust](https://github.com/RyanJarv/puppet-randrust) (Puppet) -- Puppet module for randrust
-* [minecraft_server](https://github.com/RyanJarv/minecraft_server) (Ruby) -- Chef repo for creating a Minecraft server in AWS
-* [sous-chefs/varnish](https://github.com/sous-chefs/varnish) (Ruby) -- Development repository for the varnish cookbook
+* [randrust](https://github.com/RyanJarv/randrust) -- Rust HTTP server that returns random bytes encoded with base64
+* [puppet-randrust](https://github.com/RyanJarv/puppet-randrust) -- Puppet module for randrust
+* [minecraft_server](https://github.com/RyanJarv/minecraft_server) -- Chef repo for creating a Minecraft server in AWS
+* [sous-chefs/varnish](https://github.com/sous-chefs/varnish) -- Chef Development repository for the varnish cookbook
 * [awesome-cloud-sec](https://github.com/RyanJarv/awesome-cloud-sec) -- Awesome list for cloud security related projects.
 
 
