@@ -12,8 +12,8 @@ The project list on my resume has been getting kind of long recently and it's a 
 what I should keep and what should go. I also can't exactly link to the repo list in GitHub since
 that contains a lot of uninteresting forks that I needed for PR's or things like that. So this post is
 just a list of things that I think are interesting but may have not made it on to my resume (in no
-particular order). This does not include any projects I've worked on as part of any position, just
-side projects.
+particular order). This does not include any projects I've worked on as part of any position or projects
+I've contributed to (I'll likely add these later), currently it's just personal side projects.
 
 ## GoLang
 
