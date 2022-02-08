@@ -20,7 +20,7 @@ particular order).
 * [lq](https://github.com/RyanJarv/lq) -- An exactly once, in-order queue that delivers both past and future messages to all subscribers.
 * [UserDataSwap](https://github.com/RyanJarv/UserDataSwap) -- Example of how an attacker might swap user data temporarily to execute arbitrary commands
 * [ditto](https://github.com/RyanJarv/ditto) -- Mimic any command
-* [EC2FakeImds](https://github.com/RyanJarv/EC2FakeImds) -- PoC based on https://blog.ryanjarv.sh/2020/10/19/imds-persistence.html
+* [EC2FakeImds](https://github.com/RyanJarv/EC2FakeImds) -- Spoofing IMDS for nodes in a VPC. PoC based on https://blog.ryanjarv.sh/2020/10/19/imds-persistence.html
 * [cli-hijacker](https://github.com/RyanJarv/cli-hijacker) -- Fork of aws-vault for the cli-hijacker PoC.
 * [coderun](https://github.com/RyanJarv/coderun) -- Running scripts in an isolated environment should be stupid easy.
 * [dockersnitch](https://github.com/RyanJarv/dockersnitch) -- Like little snitch but for docker
