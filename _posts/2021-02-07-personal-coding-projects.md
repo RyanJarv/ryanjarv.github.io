@@ -12,8 +12,7 @@ The project list on my resume has been getting kind of long recently and it's a 
 what I should keep and what should go. I also can't exactly link to the repo list in GitHub since
 that contains a lot of uninteresting forks that I needed for PR's or things like that. So this post is
 just a list of things that I think are interesting but may have not made it on to my resume (in no
-particular order). This does not include any projects I've worked on as part of any position or projects
-I've contributed to (I'll likely add these later), currently it's just personal side projects.
+particular order).
 
 ## GoLang
 
@@ -26,13 +25,15 @@ I've contributed to (I'll likely add these later), currently it's just personal 
 * [coderun](https://github.com/RyanJarv/coderun) -- Running scripts in an isolated environment should be stupid easy.
 * [dockersnitch](https://github.com/RyanJarv/dockersnitch) -- Like little snitch but for docker
 * [gocash](https://github.com/RyanJarv/gocash) -- Redis like cashier service in GoLang
+* [RhinoSecurityLabs/amazon-ssm-agent](https://github.com/RhinoSecurityLabs/amazon-ssm-agent) -- Fork of amazon-ssm-agent that can run as any user in parallel with the official service.
 
 ## Python
-* [marionette](https://github.com/RyanJarv/marionette) -- Active/Passive UserData swap PoC.
+* [dsnap](https://github.com/RhinoSecurityLabs/dsnap) -- Utility for downloading and mounting EBS snapshots using the EBS Direct API's
+* [marionette](https://github.com/RyanJarv/marionette) -- Active/Passive UserData swap PoC
   * This is a rewrite of UserDataSwap which solves some issues that came up in practice.
 * [steampipe_alchemy](https://github.com/RyanJarv/steampipe_alchemy) -- SQLAlchemy wrapper around Steampipe.
-* [aws_session_recorder](https://github.com/RyanJarv/aws_session_recorder) (Python) -- AWS session that records discovered resources to a database.
-* [awsconfig](https://github.com/RyanJarv/awsconfig) -- AWS Config rules for non-default IMDS routes (partially obsolete).
+* [aws_session_recorder](https://github.com/RyanJarv/aws_session_recorder) (Python) -- AWS session that records discovered resources to a database
+* [awsconfig](https://github.com/RyanJarv/awsconfig) -- AWS Config rules for non-default IMDS routes (partially obsolete)
 * [nettomidi](https://github.com/RyanJarv/nettomidi) -- Net -> MIDI (Listen to your network!)
 * [pingscan](https://github.com/RyanJarv/pingscan/blob/master/pingscan.py) -- Messing around with sockets
 * [msh](https://github.com/RyanJarv/msh) -- Multivac Shell
@@ -41,9 +42,9 @@ I've contributed to (I'll likely add these later), currently it's just personal 
 * [randrust](https://github.com/RyanJarv/randrust) -- Rust HTTP server that returns random bytes encoded with base64
 * [puppet-randrust](https://github.com/RyanJarv/puppet-randrust) -- Puppet module for randrust
 * [minecraft_server](https://github.com/RyanJarv/minecraft_server) -- Chef repo for creating a Minecraft server in AWS
-* [sous-chefs/varnish](https://github.com/sous-chefs/varnish) -- Chef Development repository for the varnish cookbook
 * [awesome-cloud-sec](https://github.com/RyanJarv/awesome-cloud-sec) -- Awesome list for cloud security related projects.
 
-
-
-
+## Maintainer and Significant Contributor
+* [Pacu](https://github.com/RhinoSecurityLabs/pacu) -- The AWS exploitation framework, designed for testing the security of Amazon Web Services environments.
+* [CloudGoat](https://github.com/RhinoSecurityLabs/cloudgoat) -- CloudGoat is Rhino Security Labs' "Vulnerable by Design" AWS deployment tool
+* [sous-chefs/varnish](https://github.com/sous-chefs/varnish) -- Chef Development repository for the varnish cookbook
