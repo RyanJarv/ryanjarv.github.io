@@ -18,7 +18,7 @@ Content Distribution Networks (CDNs), such as CloudFront and CloudFlare, are oft
 
 Restricting the ability for attackers to bypass the CDN and access the origin server is critical to the effective implementation of the security controls CDNs offer. Despite this, preventing unauthorized access to the origin is a detail often missed during implementation of the infrastructure.
 
-Other blog posts have covered the security risks of directly accessible origin servers at length. We won't be covering this specific misconfiguration in this post. Instead, We will focus on a similar attack which is often the result of attempting to fix this vulnerability by IP allow listing the CDN's IP range. This IP range is shared across all customers, so IP allow listing is insufficient to restrict access to the origin to traffic traversing the intended CDN distribution.
+Other blog posts have covered the security risks of directly accessible origin servers at length. I won't be covering this specific misconfiguration in this post. Instead, I'll focus on a similar attack which is often the result of attempting to fix this vulnerability by IP allow listing the CDN's IP range. This IP range is shared across all customers, so IP allow listing is insufficient to restrict access to the origin to traffic traversing the intended CDN distribution.
 
 To demonstrate this issue, I created two tools: cdn-proxy and cdn-scanner. 
 
@@ -45,7 +45,7 @@ This attack allows for bypassing security features that the CDN implements. This
 
 Scanning for origins that do not filter requests from the CDN is possible using the cdn-scanner tool, which compares responses from origins when queried directly to proxied through the CDN. When run against CloudFlare, the scanner will update the origin before every proxied request. This is highly parallel but can take some time waiting for the configuration to update before sending the proxied request. This delay can be sidestepped in CloudFront by taking advantage of Lambda@Edge to dynamically set the origin per request as it passes through the CDN, allowing requests to be proxied as fast as the cdn-scanner client can send them.
 
-Additionally, in the case of CloudFront, when the X-Forwarded-For header is relied on by the backend application, the attacker will be able to spoof their IP address arbitrarily. We'll briefly outline what X-Forwarded-For is and how it works to understand why this is applicable in most cases.
+Additionally, in the case of CloudFront, when the X-Forwarded-For header is relied on by the backend application, the attacker will be able to spoof their IP address arbitrarily. I'll briefly outline what X-Forwarded-For is and how it works to understand why this is applicable in most cases.
 
 
 ### What Does This Enable? – X-Forwarded-For IP Spoofing
