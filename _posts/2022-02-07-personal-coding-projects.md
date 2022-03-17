@@ -6,7 +6,7 @@ title: Personal Coding Projects
 {{ page.title }}
 ================
 
-<p class="meta">07 Feb 2021 - NW</p>
+<p class="meta">07 Feb 2022 - NW</p>
 
 The project list on my resume has been getting kind of long recently and it's a bit difficult to decide
 what I should keep and what should go. I also can't exactly link to the repo list in GitHub since
