@@ -79,3 +79,4 @@ While I focused on CloudFront and AWS WAF in this example, this misconfiguration
 In the case of AWS CloudFront, the documentation provides recommendations for restricting access to the origin when using an S3 bucket or ALB. In other cases, you can use an approach similar to what is recommended for ALBs; enforcing a requirement that a specific header is present on requests in the backend web server configuration or application code.
 
 In the case of CloudFlare, the documentation recommends using either CloudFlare Tunnels or Authenticated Origin Pulls. Although an approach similar to AWS’s ALB recommendations could be used as well; setting a header as requests pass through the CDN which is verified at the origin.
+
