@@ -78,8 +78,6 @@ For this post, we'll assume CloudFront is being used, however, this attack may a
 
 ## PoC Video: Bypassing CDN WAFs with alternate domain routing
 
-*Note:* In the video I wrote out CloudFlare, the demo is not against CloudFlare but instead CloudFront. I hate that these sound so similar...
-
 In the video below I show the process of going from an entirely locked down website to gaining access through a distribution we control. When using this new distribution, any IP restrictions and WAF protections in place on the original web site will be disabled.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TchwGCr4bZE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
