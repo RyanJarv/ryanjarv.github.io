@@ -96,14 +96,12 @@ In the case of CloudFlare, the documentation recommends using either CloudFlare 
 
 CloudFlare Authenticated Origin Pulls can operate in a few different ways and not all of them will protect against this attack. I haven't thoroughly dug into this yet and don't want to get things slightly wrong, so I'm going to quote [new23d](https://twitter.com/new23d) here.
 
-```
-CF for example has "authenticated origin pulls" (as you have pointed out.) But within it there are three levels:
-
-1. Zone-Level — CloudFlare certificate
-2. Zone-Level — Customer certificates
-3. Per-Hostname — Customer certificates
-
-Only the last two, with customer certificates, prevent the sort of routing/shadowing that you've discussed. All three are Mutual TLS so will require change at the origin, but only the customer certificate options set the authn uniquely enough to prevent those who don't have the key to a specific client cert expected on the origin from connecting at all.
-```
+> CF for example has "authenticated origin pulls" (as you have pointed out.) But within it there are three levels:
+>
+> 1. Zone-Level — CloudFlare certificate
+> 2. Zone-Level — Customer certificates
+> 3. Per-Hostname — Customer certificates
+>
+> Only the last two, with customer certificates, prevent the sort of routing/shadowing that you've discussed. All three are Mutual TLS so will require change at the origin, but only the customer certificate options set the authn uniquely enough to prevent those who don't have the key to a specific client cert expected on the origin from connecting at all.
 
 But to summarize, the first option (Zone-Level - CloudFlare certificate) is used across all CloudFlare customers. It does not offer any protection from this attack because you are only authenticating that the request came from CloudFlare, not your specific distribution in CloudFlare. The cdn-scanner tool currently does not support this configuration, so it may appear to be protected. However, this is misleading as the attacker only needs to turn on the same "Zone-Level - CloudFlare certificate" setting in the fake distribution.
