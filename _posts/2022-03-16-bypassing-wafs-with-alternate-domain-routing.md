@@ -27,6 +27,14 @@ To demonstrate this issue, I created two tools: cdn-proxy and cdn-scanner.
 
 In-depth information on these tools can be found on the [cdn-proxy](https://github.com/RyanJarv/cdn-proxy) GitHub repo.
 
+## Inspiration
+
+This project kind of came out of an argument that I had with someone whether this was possible or not. Being the idiot I am, I hate being wrong, so
+this ended up being the result. Before making this public I spent some time trying to find similar work, unfortantely the only explicit reference I
+could find was a stack overflow breifly mentioning that this might be possible. After I posted this I was talking to Ian Mckay and realized I first
+heard Aidan Steele talking about defending against it on twitter some time ago. Want to give credit where it's due, I \*think\* this post might be the
+first exploring the issue from an attackers perspective, but it seems at least a few people have been defending against it well before that.
+
 ## How The Attack Works
 
 This attack is relatively straightforward, given you understand the Shared CDNs operate above layer 4 of the OSI model. This means they terminate TCP connections on their network and make a separate TCP connection to the origin. This in turn, means that all connections through a CDN will be made from the client to an IP address the CDN network owns. Additionally, when a connection needs to be made to the origin (your backend server), it is also made with a source IP address that the CDN network owns.
