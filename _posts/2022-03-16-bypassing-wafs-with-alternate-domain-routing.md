@@ -35,7 +35,7 @@ Interestingly some work that was similar in implementation was done by Mingkui W
 
 Around the time I published this, I came across Adam Pritchard's thorough post on the XFF (linked below) and reached out to him about this issue. You can find his notes on how this affects the X-Forwarded-For header on CloudFlare [here](https://adam-p.ca/blog/2022/03/x-forwarded-for/#re-fronting-attack). In short, CloudFlare treats this as a protected header, so the IP spoofing attacks described in this post, in general, will not work on CloudFlare if you are using that header (please do not rely on this though, as Adam said in his post "Always do strong verification of your CDN!").
 
-Lastly, but very important if you use CloudFlare, [new23d](https://twitter.com/new23d) pointed out on the Cloud Security Slack channel that CloudFlare has three types of Authenticated Origin pulls, and not all of them will protect against this attack. Check out the remediation section again if you read this before and use this mitigation.
+Lastly, but very important if you use CloudFlare, [Dhruv Ahuja](https://twitter.com/new23d) pointed out on the Cloud Security Slack channel that CloudFlare has three types of Authenticated Origin pulls, and not all of them will protect against this attack. Check out the remediation section again if you read this before and use this mitigation.
 
 ## How The Attack Works
 
@@ -92,7 +92,7 @@ In the case of CloudFlare, the documentation recommends using either CloudFlare 
 
 ### Update On CloudFlare Authenticated Origin Pulls
 
-CloudFlare Authenticated Origin Pulls can operate in a few different ways and not all of them will protect against this attack. I haven't thoroughly dug into this yet and don't want to get things slightly wrong, so I'm going to quote [new23d](https://twitter.com/new23d) here.
+CloudFlare Authenticated Origin Pulls can operate in a few different ways and not all of them will protect against this attack. I haven't thoroughly dug into this yet and don't want to get things slightly wrong, so I'm going to quote [Dhruv Ahuja](https://twitter.com/new23d) here.
 
 > CF for example has "authenticated origin pulls" (as you have pointed out.) But within it there are three levels:
 >
