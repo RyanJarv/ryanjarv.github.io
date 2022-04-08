@@ -27,9 +27,15 @@ To demonstrate this issue, I created two tools: cdn-proxy and cdn-scanner.
 
 In-depth information on these tools can be found on the [cdn-proxy](https://github.com/RyanJarv/cdn-proxy) GitHub repo.
 
-## Inspiration
+## Inspiration, Other Work, and Changes
 
-Before making this public, I spent some time trying to find similar work. The only explicit reference I could find was a stack overflow, briefly mentioning that this might be possible. A bit after I posted this, however, I was talking to [Ian Mckay](https://twitter.com/iann0036) in the Cloud Security Slack channel and realized that I had first heard both Ian and [Aidan Steele](https://twitter.com/__steele) talking about defending against this issue on Twitter some time ago. I want to give credit where it's due, I don't think I would have thought about this if I hadn't had that conversation stuck somewhere in the back of my head. In short, I \*think\* this post might be the first to explore the issue from an attacker's perspective, but at least some people have been defending against it for some time now.
+Before making this public, I spent some time trying to find similar work. The only explicit reference I could find was a stack overflow, briefly mentioning that this might be possible. A bit after I posted this, however, I was talking to [Ian Mckay](https://twitter.com/iann0036) in the Cloud Security Slack channel and realized that I had first heard both Ian and [Aidan Steele](https://twitter.com/__steele) talking about defending against this issue on Twitter some time ago. I want to give credit where it's due, and I don't think I would have thought about this if I hadn't had that conversation stuck somewhere in the back of my head. In short, I \*think\* this post might be the first to explore the issue from an attacker's perspective, but at least some people have been defending against it for some time now.
+
+Interestingly some work that was similar in implementation was done by Mingkui Wei for [Usenix](https://www.usenix.org/conference/usenixsecurity21/presentation/wei) and the [Tor Project](https://blog.torproject.org/anti-censorship-domain-shadowing/), this approaches the same idea from a privacy perspective rather than security. Personally, I find it interesting that the same concept can have very different results depending on how you think about it.
+
+Around the time I published this, I came across Adam Pritchard's thorough post on the XFF (linked below) and reached out to him about this issue. You can find his notes on how this affects the X-Forwarded-For header on CloudFlare [here](https://adam-p.ca/blog/2022/03/x-forwarded-for/#re-fronting-attack). In short, CloudFlare treats this as a protected header, so the IP spoofing attacks described in this post, in general, will not work on CloudFlare if you are using that header (please do not rely on this though, as Adam said in his post "Always do strong verification of your CDN!").
+
+Lastly, but very important if you use CloudFlare, [new23d](https://twitter.com/new23d) pointed out on the Cloud Security Slack channel that CloudFlare has three types of Authenticated Origin pulls, and not all of them will protect against this attack. Check out the remediation section again if you read this before and use this mitigation.
 
 ## How The Attack Works
 
@@ -86,3 +92,18 @@ In the case of AWS CloudFront, the documentation provides recommendations for re
 
 In the case of CloudFlare, the documentation recommends using either CloudFlare Tunnels or Authenticated Origin Pulls. Although an approach similar to AWS’s ALB recommendations could be used as well; setting a header as requests pass through the CDN which is verified at the origin.
 
+### Update On CloudFlare Authenticated Origin Pulls
+
+CloudFlare Authenticated Origin Pulls can operate in a few different ways and not all of them will protect against this attack. I haven't thoroughly dug into this yet and don't want to get things slightly wrong, so I'm going to quote [new23d](https://twitter.com/new23d) here.
+
+```
+CF for example has "authenticated origin pulls" (as you have pointed out.) But within it there are three levels:
+
+1. Zone-Level — CloudFlare certificate
+2. Zone-Level — Customer certificates
+3. Per-Hostname — Customer certificates
+
+Only the last two, with customer certificates, prevent the sort of routing/shadowing that you've discussed. All three are Mutual TLS so will require change at the origin, but only the customer certificate options set the authn uniquely enough to prevent those who don't have the key to a specific client cert expected on the origin from connecting at all.
+```
+
+But to summarize, the first option (Zone-Level - CloudFlare certificate) is used across all CloudFlare customers. It does not offer any protection from this attack because you are only authenticating that the request came from CloudFlare, not your specific distribution in CloudFlare. The cdn-scanner tool currently does not support this configuration, so it may appear to be protected. However, this is misleading as the attacker only needs to turn on the same "Zone-Level - CloudFlare certificate" setting in the fake distribution.
