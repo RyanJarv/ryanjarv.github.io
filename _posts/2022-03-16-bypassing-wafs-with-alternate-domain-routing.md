@@ -29,7 +29,7 @@ In-depth information on these tools can be found on the [cdn-proxy](https://gith
 
 ## Inspiration
 
-Before making this public, I spent some time trying to find similar work. The only explicit reference I could find was a stack overflow briefly mentioning that this might be possible. A bit after I posted this, however, I was talking to Ian Mckay in the Cloud Security Slack channel and realized that I had first heard Aidan Steele talking about defending against this issue on Twitter some time ago. I want to give credit where it's due. I \*think\* this post might be the first to explore the issue from an attacker's perspective, but at least a few people have been defending against it well before that. I can say 
+Before making this public, I spent some time trying to find similar work. The only explicit reference I could find was a stack overflow briefly mentioning that this might be possible. A bit after I posted this, however, I was talking to Ian Mckay in the Cloud Security Slack channel and realized that I had first heard Aidan Steele talking about defending against this issue on Twitter some time ago. I want to give credit where it's due. I \*think\* this post might be the first to explore the issue from an attacker's perspective, but at least a few people have been defending against it well before that.
 
 ## How The Attack Works
 
