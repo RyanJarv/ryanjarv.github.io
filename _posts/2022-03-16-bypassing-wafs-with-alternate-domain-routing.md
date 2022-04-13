@@ -32,7 +32,7 @@ In-depth information on these tools can be found on the [cdn-proxy](https://gith
 [Aidan Steele](https://twitter.com/__steele/status/1250264656951664640) originally tweeted about the idea behind this attack back in 2020 [here](https://twitter.com/__steele/status/1250264656951664640?s=20&t=bzA2G3H2jlyv60Wlj5VzqQ) and is the reason why I was aware of the issue when I
 started working on this project (Aidan: thank you! and sorry for forgetting about this).
 
-I also want to thank my co-workers at Rhino Security Labs for taking the time to provide early feedback and review of this work (i of course still claim responsibility for any errors or not so best writing tho).
+I also want to thank my co-workers at [Rhino Security Labs](https://twitter.com/rhinosecurity) for taking the time to provide early feedback and review of this work (i of course still claim responsibility for any errors or not so best writing tho).
 
 Interestingly some work that was similar in implementation was done by Mingkui Wei for [Usenix](https://www.usenix.org/conference/usenixsecurity21/presentation/wei) and the [Tor Project](https://blog.torproject.org/anti-censorship-domain-shadowing/), this approaches the same idea from a privacy perspective rather than security. Personally, I find it interesting that the same concept can have very different results depending on how you think about it.
 
