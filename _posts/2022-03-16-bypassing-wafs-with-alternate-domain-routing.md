@@ -10,6 +10,11 @@ title: Bypassing CDN WAF's with Alternate Domain Routing
 
 Bypassing CDN WAF's with Alternate Domain Routing
 
+Update: Check out the updated version of this post on the
+[APNIC blog](https://blog.apnic.net/2022/05/19/bypassing-cdn-wafs-with-alternate-domain-routing/). It addresses some
+questions I received and is much clearer thanks to [Kubilay's](https://twitter.com/koobs)
+constructive feedback.
+
 Related Tools: [cdn-proxy](https://github.com/RyanJarv/cdn-proxy)
 
 ## Introduction
