@@ -1,2 +1,6 @@
 _site
 vendor
+.idea
+.DS_Store
+**/*.sw*
+.jekyll-metadata
