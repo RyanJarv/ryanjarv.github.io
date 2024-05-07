@@ -7,48 +7,48 @@
 /* Global Reset */
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  background-color: white;
-  font: 13.34px helvetica, arial, clean, sans-serif;
-  *font-size: small;
-  text-align: center;
+    background-color: white;
+    font: 13.34px arial, helvetica, clean, sans-serif;
+    *font-size: small;
+    text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
+    font-size: 100%;
 }
 
 h1 {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 p {
-  margin: 1em 0;
+    margin: 1em 0;
 }
 
 a {
-  color: #00a;
+    color: #00a;
 }
 
 a:hover {
-  color: black;
+    color: black;
 }
 
 a:visited {
-  color: #a0a;
+    color: #a0a;
 }
 
 table {
-  font-size: inherit;
-  font: 100%;
+    font-size: inherit;
+    font: 100%;
 }
 
 /*****************************************************************************/
@@ -58,19 +58,19 @@ table {
 /*****************************************************************************/
 
 ul.posts {
-  list-style-type: none;
-  margin-bottom: 2em;
+    list-style-type: none;
+    margin-bottom: 2em;
 }
 
-  ul.posts li {
+ul.posts li {
     line-height: 1.75em;
-  }
+}
 
-  ul.posts span {
+ul.posts span {
     color: #aaa;
     font-family: Monaco, "Courier New", monospace;
     font-size: 80%;
-  }
+}
 
 /*****************************************************************************/
 /*
@@ -79,68 +79,69 @@ ul.posts {
 /*****************************************************************************/
 
 .site {
-  font-size: 110%;
-  text-align: justify;
-  width: 42em;
-  margin: 3em auto 2em auto;
-  line-height: 1.5em;
+    font-size: 120%;
+    text-align: justify;
+    width: 80%;
+    max-width: 800px;
+    margin: 3em auto 2em auto;
+    line-height: 1.75em;
 }
 
 .title {
-  color: #a00;
-  font-weight: bold;
-  margin-bottom: 2em;
+    color: #a00;
+    font-weight: bold;
+    margin-bottom: 2em;
 }
 
-  .site .title a {
+.site .title a {
     color: #a00;
     text-decoration: none;
-  }
+}
 
-  .site .title a:hover {
+.site .title a:hover {
     color: black;
-  }
+}
 
-  .site .title a.extra {
+.site .title a.extra {
     color: #aaa;
     text-decoration: none;
     margin-left: 1em;
-  }
+}
 
-  .site .title a.extra:hover {
+.site .title a.extra:hover {
     color: black;
-  }
+}
 
-  .site .meta {
+.site .meta {
     color: #aaa;
-  }
+}
 
-  .site .footer {
+.site .footer {
     font-size: 80%;
     color: #666;
     border-top: 4px solid #eee;
     margin-top: 2em;
     overflow: hidden;
-  }
+}
 
-    .site .footer .contact {
-      float: left;
-      margin-right: 3em;
-    }
+.site .footer .contact {
+    float: left;
+    margin-right: 3em;
+}
 
-      .site .footer .contact a {
-        color: #8085C1;
-      }
+.site .footer .contact a {
+    color: #8085C1;
+}
 
-    .site .footer .rss {
-      margin-top: 1.1em;
-      margin-right: -.2em;
-      float: right;
-    }
+.site .footer .rss {
+    margin-top: 1.1em;
+    margin-right: -.2em;
+    float: right;
+}
 
-      .site .footer .rss img {
-        border: 0;
-      }
+.site .footer .rss img {
+    border: 0;
+}
 
 /*****************************************************************************/
 /*
@@ -149,124 +150,151 @@ ul.posts {
 /*****************************************************************************/
 
 #post {
-  -webkit-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
+    -webkit-hyphens: manual;
+    -ms-hyphens: manual;
+    hyphens: manual;
 }
 
-  /* standard */
+/* standard */
 
-  #post pre {
+#post pre {
     border: 1px solid #ddd;
     background-color: #eef;
     padding: 0 .4em;
-  }
+}
 
-  #post ul,
-  #post ol {
+#post ul,
+#post ol {
     margin-left: 1.35em;
-  }
+}
 
-  #post code {
+#post code {
     border: 1px solid #ddd;
     background-color: #eef;
     font-size: 85%;
     padding: 0 .2em;
-  }
+}
 
-    #post pre code {
-      white-space: pre-wrap;
-      word-break: break-all;
-      word-wrap: break-word;
-      border: none;
-    }
+#post pre code {
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: none;
+}
 
-  #post img {
-    max-width: 42em;
+#post img {
+    display: block;
+    max-width: 105%;
     padding: 1em 0;
-  }
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-right: auto;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
 
-  /* terminal */
+img + em {
+    display: block;
+    padding: 1em 0;
+    margin-left: 10px;
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 100%;
+    font-weight: bold;
+    font-style: italic;
+}
 
-  #post pre.terminal {
+#post video {
+    display: block;
+    max-width: 140%;
+    padding: 1em 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-right: auto;
+}
+
+
+/* terminal */
+
+#post pre.terminal {
     border: 1px solid black;
     background-color: #333;
     color: white;
-  }
-
-  #post pre.terminal code {
-    background-color: #333;
-  }
-
-#related {
-  margin-top: 2em;
 }
 
-  #related h2 {
+#post pre.terminal code {
+    background-color: #333;
+}
+
+#related {
+    margin-top: 2em;
+}
+
+#related h2 {
     margin-bottom: 1em;
-  }
+}
 
 
 #resume {
-  -webkit-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
-  padding: unset;
+    -webkit-hyphens: manual;
+    -ms-hyphens: manual;
+    hyphens: manual;
+    padding: unset;
 }
 
-  /* standard resume */
+/* standard resume */
 
-  #resume pre {
+#resume pre {
     border: 1px solid #ddd;
     background-color: #eef;
-  }
+}
 
-  #resume ul,
-  #resume ol {
+#resume ul,
+#resume ol {
     margin-left: 1.35em;
-  }
+}
 
-  #resume code {
+#resume code {
     border: 1px solid #ddd;
     background-color: #eef;
     font-size: 85%;
-  }
+}
 
-    #resume pre code {
-      white-space: pre-wrap;
-      word-break: break-all;
-      word-wrap: break-word;
-      border: none;
-    }
+#resume pre code {
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: none;
+}
 
-  #resume img {
+#resume img {
     max-width: 42em;
-  }
+}
 
-  /* terminal */
+/* terminal */
 
-  #resume pre.terminal {
+#resume pre.terminal {
     border: 1px solid black;
     background-color: #333;
     color: white;
-  }
+}
 
-  #resume pre.terminal code {
+#resume pre.terminal code {
     background-color: #333;
-  }
+}
 
-  .rotate90 {
+.rotate90 {
     margin-top: 5em;
     margin-bottom: 5em;
     transform: rotate(90deg);
-  }
-  
-  .rotate180 {
+}
+
+.rotate180 {
     transform: rotate(180deg);
-  }
-  
-  .rotate270 {
+}
+
+.rotate270 {
     margin-top: 5em;
     margin-bottom: 5em;
     transform: rotate(270deg);
-  }
+}

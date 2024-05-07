@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<div id="post">
+{{ content }}
+</div>
+
+<div id="next">
+  {% assign next_post_number = page.post_number | plus: 1 %}
+  {% assign next_post = site.categories.sar | sort | reversed | where_exp: 'item', 'item.post_number == next_post_number' | first %}
+  <h2>Next Post</h2>
+  <span>{{ next_post.date | date_to_string }}</span> &raquo; <a href="{{ next_post.url }}">{{ next_post.title }}</a>
+</div>
+
+<div id="related">
+  <h2>All Posts In The Series</h2>
+  <ul class="posts">
+    {% assign sorted_posts = site.categories.sar | sort | reversed | where_exp: 'item', 'item.post_number != page.post_number'  %}
+    {% for post in sorted_posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
