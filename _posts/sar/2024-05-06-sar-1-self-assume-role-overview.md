@@ -21,7 +21,7 @@ This modification in IAM Role trust policies overlapped with my examination of s
 
 By sharing these blog posts I hope to dive deeper into AWS's original discussion, focusing on the potential exploitation of past behaviors of Implicit SAR.
 
-If you would like to verify your roles are not allowlisted into the old behavior I would recommend reading through the original blog post by AWS (https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/). It is also worth noting that AWS has also recently added the `explicitTrustGrant` to AssumeRole log events to help detect legacy trust role behavior, this is covered in AWS’s post linked above and documented [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_role-trust-behavior).
+If you would like to verify your roles are not allowlisted into the old behavior I would recommend reading through the [original blog post by AWS](https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/). It is also worth noting that AWS has also recently added the `explicitTrustGrant` to AssumeRole log events to help detect legacy trust role behavior, this is covered in AWS’s post linked above and documented [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_role-trust-behavior).
 
 ### Summery
 
