@@ -40,3 +40,9 @@ After that, I'll cover a few attacks that may have been possible in the past wit
   * [Eluding Session Expirations and Revocations](sar-4-eluding-session-expirations-and-revocations.html)
   * [Modifying Session State](sar-5-modifying-session-state.html)
   * [Attacking The Confused Deputy](sar-6-confused-deputy.html)
+
+#### Notes and Thanks
+
+I started this post about a year and a half ago, but took me a long time to finish. After digging into this topic quite a bit (and more that's not included here) I ended up just getting burnt out on it and set it away for a while.
+
+Anyway, I wanted to thank the AWS security team for reviewing this post, and separately, for the work that was put into updating the Role Trust behavior.
