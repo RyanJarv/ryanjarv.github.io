@@ -8,6 +8,6 @@ defaults:
       path: "resumes"
     values:
       pdf: true
-#plugins:
-#  - jekyll-feed
+plugins:
+  - jekyll-feed
 include: [".well-known", "resources/js"]

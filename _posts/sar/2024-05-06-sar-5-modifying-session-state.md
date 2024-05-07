@@ -23,11 +23,11 @@ In this post, we'll take a look at how Implicit SAR had unexpected effects on us
 
 ## Spoofing Role Session Names
 
-***Note:*** *The effect Implicit SAR had on Role Session Names was also mentioned in [this blog post](https://arkadiyt.com/2024/02/18/detecting-manual-aws-actions-an-update/#detecting-session-name-bypasses) by Arkadiy Tetelman which covers this behavior from an auditing perspective.*
+***Note:*** *The effect Implicit SAR had on Role Session Names was also mentioned in [this blog post](https://arkadiyt.com/2024/02/18/detecting-manual-aws-actions-an-update/#detecting-session-name-bypasses) by Arkadiy Tetelman. This section covers the same general issue with a few examples.*
 
 Session role names, by default, are arbitrary values chosen by users when a role is first assumed. The [sts:RoleSessionName](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname) IAM condition is intended to restrict the naming of individual IAM role sessions to track access in CloudTrail.
 
-**However, for Roles affected by Implicit SAR, it was not possible to rely on `sts:RoleSessionName` in any way.** This is because the `sts:RoleSessionName` attribute can only be used by trust policies, which were ignored during Implicit SAR. 
+However, for Roles affected by Implicit SAR, it was not possible to reliably depend on `sts:RoleSessionName`. This is because the `sts:RoleSessionName` attribute can only be used by trust policies, which were ignored during Implicit SAR. 
 
 In this section, we'll show how the configuration described in the [AWS blog post on sts:RoleSessionName](https://aws.amazon.com/blogs/security/easily-control-naming-individual-iam-role-sessions/), could not be used for accurately tracking identity when a role was affected by Implicit SAR.
 
@@ -110,7 +110,7 @@ Tags applied to roles can function as a mechanism which to grant access in IAM p
 
 In the case where sts:TagSession is allowed in the identity policy in addition to sts:AssumeRole it is possible to set transitive tags that persist for the duration of the role session chain, overriding tags from other sources.
 
-This normally isn’t an issue, but when tags are relied on in IAM policies for granting access, for example, with the Condition statement shown above, overriding them in this way can lead to more access then intended.
+This normally isn’t an issue, but when tags are relied on in IAM policies for granting access, for example, with the Condition statement shown above, overriding them in this way can lead to more access than intended.
 
 #### Example Environment
 
@@ -183,7 +183,7 @@ Session Name: prod
 arn:aws:sts::299680663816:assumed-role/dev/dev -> Assume Role Failed (arn:aws:iam::299680663816:role/prod)
 ```
 
-We can't override our session tags because no Trust policy allows the `sts:TagKeys` action.
+We can't override our session tags because no role trust policy allows the `sts:TagKeys` action.
 
 ```shell
 $ assume arn:aws:iam::299680663816:role/dev dev -t Environment=prod

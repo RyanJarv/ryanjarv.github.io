@@ -15,11 +15,11 @@ post_number: 4
 
 Roles are preferred over IAM Users to avoid long-lived API keys. Access to a Role is granted through Role Sessions, each of which results in a set of temporary credentials that expire automatically after 1 to 12 hours. On the other hand, IAM Users use long-term credentials that are valid until rotated manually.
 
-An important exception to this is when a misconfiguration that allows [Role Juggling](https://hackingthe.cloud/aws/post_exploitation/role-chain-juggling/) to become possible, which can allow attackers to maintain the same access past the original session expiration.
+An important exception to this is when a misconfiguration exists that allows [Role Juggling](https://hackingthe.cloud/aws/post_exploitation/role-chain-juggling/) to become possible, which can allow attackers to maintain the same access past the original session expiration.
 
 Role Juggling can extend access because [Role Chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining) results in a new set of credentials that are not associated with the previous in terms of session expiration. So, Role Juggling repeatedly extends this Role Chain to ensure the attacker's access does not expire or the session credentials are made ineffective with a time-based policy such as the one provided by [session revocation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html) in the IAM console.
 
-Often, we will consider Role Juggling when two or more Roles can assume each other. However, it can happen with a cyclical graph of any size, including when a single Role can assume itself. Under the old behavior, implicit SAR allowed Role Juggling to work in this way regardless of the affected Role's trust policy.
+Often, we will consider Role Juggling when two or more Roles can assume each other. However, it can happen with a cyclical graph of any size, including when a single Role can assume itself. Under the old behavior, Implicit SAR allowed Role Juggling to work in this way regardless of the affected Role's trust policy.
 
 ## Implicit SAR Role Juggling Example
 
@@ -66,7 +66,7 @@ The image above shows a shell function that continuously assumes its own Role. A
 
 ### Other Role Types -- EC2 Example
 
-Under the old behavior of Implicit SAR, terms we use to differentiate between Roles like an `EC2 Instance Role`, `Lambda Role`, `Federated Role`, or `MFA Role` did not matter. The result was the same. Given sufficient identity-based permissions, cases where we would expect a Role not to have been re-assumable, it would have been susceptible to single-role Role Juggling, and thus to the risk of being prolonged indefinitely by re-assumption rather than being time-limited as with normal temporary credentials.
+Under the old behavior of Implicit SAR, terms we use to differentiate between Roles like an `EC2 Instance Role`, `Lambda Role`, `Federated Role`, or `MFA Role` did not matter. The result was the same. Given sufficient identity-based permissions, cases where we would expect a role to not have been re-assumable, would have been susceptible to single-role Role Juggling, and thus to the risk of access being extended indefinitely by re-assumption rather than being time-limited as with normal temporary credentials.
 
 I won't cover all Role types here, but as one more example, we can consider a Role used by an EC2 instance. The only principal that ever needs to assume an EC2 Instance Role is the EC2 service principal managed by AWS, and to allow this, EC2 Roles will have a trust policy like the following:
 
@@ -113,7 +113,7 @@ This delay means calling `sts:AssumeRole` within this small window in a short lo
 
 Alternatively, it's worth noting that the web revocation IAM event only takes two seconds to be delivered through Event Bridge and SQS. With IAM events configured to send to SQS, it was also previously possible to use the revocation event as a trigger to refresh the session instead of constantly refreshing the current session every few seconds.
 
-While the policy template previously used by the AWS Console previously used the current time, it now uses the current time plus thirty seconds (see the [updated revocation behavior](#updated-revocation-behavior) section) which mitigates this behavior.
+While the policy template used by the AWS Console previously used the current time, it now uses the current time plus thirty seconds (see the [updated revocation behavior](#updated-revocation-behavior) section) which mitigates this behavior.
 
 #### Example Demo
 
