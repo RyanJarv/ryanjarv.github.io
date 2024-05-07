@@ -30,7 +30,7 @@ For example, if we have the following broad and powerful statement in an identit
 }
 ```
 
-Then, under the previous behavior, ***the identity policy itself was sufficient*** for the Role to assume itself; because in this specific situation, the roles implicitly trusted themselves, and so the role could assume itself regardless of regardless whether its role trust policy referenced the role or not.
+Then, under the previous behavior, ***the identity policy itself was sufficient*** for the Role to assume itself; because in this specific situation, the roles implicitly trusted themselves, and so the role could assume itself regardless of whether its role trust policy referenced the role or not.
 
 This IAM Evaluation Behavior was relatively unknown because a role assuming itself is an anti-pattern that wasn't commonly implemented - according to AWS, most of the usage they observed before making this change was due to software bugs or other accidental usage.
 
@@ -42,7 +42,7 @@ Specifically, under the previous behavior, Implicit SAR affected roles where the
 
 ### __Privileged Roles__
 
-This included any role that using a policy granting `sts:AssumeRole` with a `*`. Generally, this is a very powerful action so these policies often included other privileged actions like the ability to modify IAM.
+This included any role that used a policy granting `sts:AssumeRole` with a `*`. Generally, this is a very powerful action so these policies often included other privileged actions like the ability to modify IAM.
 
 * Roles with the `PowerUserAccess`, `AdministratorAccess`, or `AdministratorAccess-Amplify` managed policies attached.
 * The `OrganizationAccountAccessRole` IAM Role created by Organizations when creating a new account.
@@ -61,11 +61,7 @@ While this is not encouraged, in some cases, it is necessary. For example, situa
 
 ### __Other__
 
-To simplify later blog posts, I will only focus on the first two types, but for the sake of completeness we can also consider a few other situations. These cases where generally not be intentional, but may have been overlooked during security reviews if a Role assuming itself was not considered a risk. 
-
-Under the old behavior, implicit SAR may have also applied to more scoped-down policies with partial resource patterns depending on the name or tags of the Role. For example, when the `sts:AssumeRole` action allowed `arn:aws:sts::*:role/db-access-*` attached to a role named `db-access-prod`. Another example where this could have arisen would have been when `sts:AssumeRole` access was granted based on the session tags matching the resource tags.
-
-These situations, could have come up when renaming roles, migrating between environments, or misnaming roles when deploying code that made assumptions about the underlying infrastructure.
+I will only focus on the cases mentioned above in the later posts, but for the sake of completeness, we can also consider another category where policies granted access based on resource globs or session tags. For example, when `sts:AssumeRole` access was granted using a partial glob (i.e. `arn:aws:sts::*:role/db-access-*`) matching the current role, or when `sts:AssumeRole` was allowed when principal session tags matched the target role’s resource tags.
 
 ## Summary
 

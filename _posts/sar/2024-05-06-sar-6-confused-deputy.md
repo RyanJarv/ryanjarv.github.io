@@ -106,9 +106,9 @@ We should also consider that, regardless of whether arbitrary control over the p
 
 ### Over-provisioned Source Role
 
-If `MonitorIT` or `AccessIT`  proxy roles were not designed to function independently from the application role, it is likely that it will have additional application permissions that the attacker can abuse. This is the case in our example above as the proxy role is using an Instance Profile attached to an EC2 instance rather than a separate role which is accessed by the backend at runtime.
+If MonitorIT or AccessIT proxy roles were not designed to function independently from the application role, they will likely have additional application permissions that the attacker can abuse. This is the case in our example above as the proxy role is using an Instance Profile attached to an EC2 instance rather than a separate role which is accessed by the backend at runtime.
 
-API calls of the `MonitorIT` application which overlap with these additional permissions on the proxy role may start populating the attacker's `MonitorIT` account with data automatically. The credentials returned from the `AccessIT` application however will allow the attacker to abuse all excess permissions on the proxy role without restrictions.
+API calls of the `MonitorIT` application that overlap with these additional permissions on the proxy role may start populating the attacker's `MonitorIT` account with data automatically. The credentials returned from the `AccessIT` application however will allow the attacker to abuse all excess permissions on the proxy role without restrictions.
 
 The worst case scenario is if the proxy role allows read-only access to CloudTrail, which will contain customer ARNs and associated ExternalIDs for outbound `sts:AssumeRole` calls. In the case of `AccessIT` the attacker will now have all the information required to gain access to the AWS Accounts of every `AccessIT` customer. The last step is to simply call AssumeRole from the proxy role with each ARN and ExternalID combination found in the CloudTrail logs.
 
@@ -120,12 +120,9 @@ Doing the same in our `MonitorIT` example may be a bit more difficult, we can co
 
 Let's say the role is properly locked down, it is as minimal as our example above and no other resources in the account have overly permissive resource policies. With arbitrary control over the proxy role, we can maintain access using the role juggling technique described in the [Bypassing Session Expirations](sar-4-eluding-session-expirations-and-revocations.html) post even after our initial attack vector is fixed.
 
-Alternatively, we can attempt the attacks covered in [Implicit SAR and Session State](sar-5-modifying-session-state.html) to gain access to resources restricted by SessionTags or RoleSessionNames.
-
-
 ## Prevention
 
-Only a very tiny percent of roles were on this the implicit allowlist at the time of AWS's announcement of the trust behavior change in September 2022, and since then, that amount has since decreased further.
+Only a very tiny percent of roles were on the implicit allowlist at the time of AWS's announcement of the trust behavior change in September 2022, and since then, that amount has since decreased further.
 
 However, I recommend explicitly ensuring any proxy roles are not using the previous IAM Trust policy behavior. When and why this can happen is covered by [AWS's original announcement](https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/).
 

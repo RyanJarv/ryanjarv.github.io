@@ -24,7 +24,7 @@ An Identity-based Policy is attached to a principal (IAM Role or User) and speci
 ![Administrator Identity Policy](/images/sar-admin-identity-policy-2.png)
 *The image above shows the AdministratorAccess Identity Policy attached to a Role.*
 
-Resource-based policies such as IAM Role Trust policies are attached to resources rather than principals. In the case of IAM Roles, due to the exception noted above, the resource-based policy needs to grant the necessary permission in order for the API call to be successfully authorized, even in the same account.
+Resource-based policies such as IAM Role Trust Policies are attached to resources rather than principals. In the case of IAM Roles, due to the exception noted above, the resource-based policy needs to grant the necessary permission in order for the API call to be successfully authorized, even in the same account.
 
 ![Root Trust Policy](/images/sar-role-trust-policy.png)
 *The image above shows a Resource Trust Policy attached to a Role.*
@@ -70,11 +70,11 @@ Say we change the Principal in the last example to explicitly reference `bob` wh
 },
 ```
 
-The same behavior described for the account itself (the root principal) will now apply to the user `bob` so long as `bob` has the identity-based generic permission to call the `sts:AssumeRole` API (and no other condition- based restrictions that would interfere). However, the user `alice` in the same account `2222` would not have permission to assume the role, since she is not included in the role trust policy.
+The same behavior described for the account itself (the root principal) will now apply to the user `bob` so long as `bob` has the identity-based generic permission to call the `sts:AssumeRole` API (and no other condition-based restrictions that would interfere). However, the user `alice` in the same account `2222` would not have permission to assume the role, since she is not included in the Role Trust Policy.
 
-Note that while the second example -- specifying a particular principal 'bob' in the "foreign" account -- looks like a safer, more "least-privileged" way to manage cross-account permissions, there is no practical security difference between the two approaches when thinking holistically about cross-account trusts from an account-level perspective.
+Note that while the second example -- specifying a particular principal 'bob' in the "foreign" account -- looks like a safer, more "least-privileged" way to manage cross-account permissions, there is no practical security difference between the two approaches when thinking holistically about cross-account trusts from an account level perspective.
 
-Why? Because the root principal of the other account can grant 'bob' privileges to anyone they like! So while there's no harm in narrowing cross-account permission to a particular user or role, if you are thinking about domains of authority on an account-level, it's equivalent to granting permissions to the root principal of that account, who has full control over who can access what inside that account.
+Why? Because the root principal of the other account can grant 'bob' privileges to anyone they like! So while there's no harm in narrowing cross-account permission to a particular user or role, if you are thinking about domains of authority on an account level, it's equivalent to granting permissions to the root principal of that account, who has full control over who can access what inside that account.
 
 ### Trust Policy Sufficient Evaluation
 
@@ -88,7 +88,7 @@ This means, if we update the policy to point to `sam`, who exists in the same ac
 },
 ```
 
-In this case, IAM evaluation follows the normal rules for an identity and a resource in the same account, where the resource-based permissions are sufficient to and grant `arn:aws:iam::1111:user/sam` permission to assume the Role, even if the `sam` User does not have any `sts:AssumeRole` identity-based permissions.
+In this case, IAM evaluation follows the normal rules for an identity and a resource in the same account, where the resource-based permissions are sufficient to grant `arn:aws:iam::1111:user/sam` permission to assume the role, even if the `sam` User does not have any `sts:AssumeRole` identity-based permissions.
 
 As always, any deny statements will always still override this behavior.
 
