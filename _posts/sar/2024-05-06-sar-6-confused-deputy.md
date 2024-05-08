@@ -128,7 +128,7 @@ However, I recommend explicitly ensuring any proxy roles are not using the previ
 
 You can do this by searching CloudTrail AssumeRole events for the `explicitTrustGrant` attribute to find cases where the old role trust behavior is used. This CloudTrail attribute was covered in the "[When AWS invariants aren't [invariant]](https://awsteele.com/blog/2024/02/20/when-aws-invariants-are-not.html)" blog post by Aidian Steele and recently added to [AWS's IAM documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_role-trust-behavior). 
 
-Ensuring the proxy role is not using the old behavior will prevent the attack described above, however, due to the nature of this role it's also a very good idea to make sure the privileges associated with it are as minimal as possible. For example, the proxy role should only be allowed `sts:AssumeRole` access *outside* the current account (or org/org path). Below is an example of what this policy might look like.
+Ensuring the proxy role is not using the old behavior will prevent the attack described above, however, due to the nature of this role it's also a very good idea to make sure the privileges associated with it are as minimal as possible. For example, the proxy role should only be allowed `sts:AssumeRole` access *outside* the current organization (or account/org path). Below is an example of what this policy might look like.
 
 
 ```json
@@ -142,7 +142,7 @@ Ensuring the proxy role is not using the old behavior will prevent the attack de
       "Resource": "*"
     },
     {
-      "Sid": "Deny all access to any resources in the current account",
+      "Sid": "Deny all access to any resources in the current organization",
       "Effect": "Deny",
       "Action": "*",
       "Resource": "*",
