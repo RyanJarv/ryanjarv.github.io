@@ -23,7 +23,7 @@ By sharing these blog posts I hope to dive deeper into AWS's original discussion
 
 If you would like to verify your roles are not allowlisted into the old behavior I would recommend reading through the [original blog post by AWS](https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/). It is also worth noting that AWS has also recently added the `explicitTrustGrant` to AssumeRole log events to help detect legacy trust role behavior, this is covered in AWS’s post linked above and documented [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_role-trust-behavior).
 
-### Summery
+### Summary
 
 The first couple of posts in the IAM Evaluation section below go over the basics of AssumeRole in the context of IAM and how Implicit SAR worked before the change. You can skip these if you want, just know these are there if they are helpful.
 

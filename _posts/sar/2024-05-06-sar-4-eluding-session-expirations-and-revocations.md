@@ -156,6 +156,6 @@ Compared to other escalations like creating new users or backdooring role trust 
 
 For these reasons, SAR Role Juggling previously had the potential to be a valuable technique for malicious users who expected their access to expire or be revoked. For example, when an Admin is expecting to be fired or when an attacker gains access to a cross-account proxy role for a SaaS service, the second which we'll explore more in [Attacking the Confused Deputy](./sar-6-confused-deputy.html).
 
-## Summery
+## Summary
 
 Role Juggling complicates the expectation that access to Roles is time-limited and can be easily revoked. Additionally, [Implicit SAR](./sar-3-iam-evaluation-self-assume-role.html#implicit-self-assume-role) meant a simplified version of Role Juggling previously applied to all administrative Roles.
