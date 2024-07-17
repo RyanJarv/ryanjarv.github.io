@@ -96,7 +96,7 @@ Currently, the attacker has access to the SaaS provider role restricted by the a
 
 What this means, at the moment, for our specific example environment is effectively nothing. To understand the impact of this attack we need to understand what the attacker would need to do next to turn this into a useful exploit.
 
-For the sake of understanding impact let's say our example above was not for DetectIT the monitoring application, it was for AccessIT an SSO provider. This is just a service that spits out temporary credentials to customers obtained through `sts:AssumeRole`.
+For the sake of understanding impact let's say our example above was not for DetectIT the monitoring application, it was for AccessIT an SSO provider. This is a service that simply returns temporary credentials to customers from the result of `sts:AssumeRole`.
 
 By using the functionality of the `AccessIT` service the attacker now has the raw credentials of the `AccessIT` proxy role.
 
