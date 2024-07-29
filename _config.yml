@@ -10,4 +10,5 @@ defaults:
       pdf: true
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 include: [".well-known", "resources/js"]

@@ -262,6 +262,7 @@ DEPENDENCIES
   github-pages
   jekyll
   jekyll-feed
+  jekyll-redirect-from
   webrick (~> 1.8)
 
 BUNDLED WITH
