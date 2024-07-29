@@ -27,7 +27,7 @@ If you would like to verify your roles are not allowlisted into the old behavior
 
 The first couple of posts in the IAM Evaluation section below go over the basics of AssumeRole in the context of IAM and how Implicit SAR worked before the change. You can skip these if you want, just know these are there if they are helpful.
 
-After that, I'll cover a few attacks that may have been possible in the past with Implicit SAR. Starting with persistence with [Eluding Session Expirations and Revocations](sar-4-eluding-session-expirations-and-revocations.html), then [Modifying Session State](sar-5-modifying-session-state.html) to throw off auditing or potentially escalate privileges, finally in [Attacking The Confused Deputy](sar-6-confused-deputy.html) I'll show how Implicit SAR can turn a few missing security best practices into a critical non-authenticated vulnerability chain resulting in the compromise of all customers of a SaaS Provider.
+After that, I'll cover a few attacks that may have been possible in the past with Implicit SAR. Starting with persistence with [Bypassing Session Expirations and Revocations](sar-4-bypassing-session-expirations-and-revocations.html), then [Modifying Session State](sar-5-modifying-session-state.html) to throw off auditing or potentially escalate privileges, finally in [Attacking The Confused Deputy](sar-6-confused-deputy.html) I'll show how Implicit SAR can turn a few missing security best practices into a critical non-authenticated vulnerability chain resulting in the compromise of all customers of a SaaS Provider.
 
 #### IAM Evaluation
 
@@ -37,7 +37,7 @@ After that, I'll cover a few attacks that may have been possible in the past wit
 
 #### Attacks
 
-  * [Eluding Session Expirations and Revocations](sar-4-eluding-session-expirations-and-revocations.html)
+  * [Bypassing Session Expirations and Revocations](sar-4-bypassing-session-expirations-and-revocations.html)
   * [Modifying Session State](sar-5-modifying-session-state.html)
   * [Attacking The Confused Deputy](sar-6-confused-deputy.html)
 
@@ -47,7 +47,7 @@ I started this post about a year and a half ago, but took me a long time to fini
 
 I want to thank the AWS security team for reviewing this post, and separately, for the work that was put into updating the Role Trust behavior.
 
-The mention of implicit SAR bypassing SCP enforcement of EC2 sessions in the [Session Expirations and Revocations](sar-4-eluding-session-expirations-and-revocations.html#Other-Role-Types----EC2-Example) was originally brought up by [Houston Hopkins](https://twitter.com/hhopk).
+The mention of implicit SAR bypassing SCP enforcement of EC2 sessions in the [Session Expirations and Revocations](sar-4-bypassing-session-expirations-and-revocations.html#Other-Role-Types----EC2-Example) was originally brought up by [Houston Hopkins](https://twitter.com/hhopk).
 
 The effect Implicit SAR had on Role Session Names, which is covered in [Modifying Session State](sar-5-modifying-session-state.html), was also mentioned in [this blog post](https://arkadiyt.com/2024/02/18/detecting-manual-aws-actions-an-update/#detecting-session-name-bypasses) by Arkadiy Tetelman.
 

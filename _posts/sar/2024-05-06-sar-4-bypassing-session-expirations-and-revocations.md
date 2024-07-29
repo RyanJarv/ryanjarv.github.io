@@ -1,9 +1,11 @@
 ---
 layout: category
-title: Implicit SAR -- Eluding Session Expirations and Revocations
+title: Implicit SAR -- Bypassing Session Expirations and Revocations
 category: sar
 permalink: /:categories/:title:output_ext
 post_number: 4
+redirect_from:
+  - /sar/sar-4-eluding-session-expirations-and-revocations.html
 ---
 
 {{ page.title }}
@@ -89,9 +91,9 @@ Like before, our example is an administrative Role with full `sts:AssumeRole` ac
 
 Additionally, the subsequent session credentials would have no longer been associated with the original EC2 instance and no longer would have had any EC2 context data associated with the session. For example, a Service Control Policy that [restricts our use of IMDS credentials](https://aws.amazon.com/blogs/security/how-to-use-policies-to-restrict-where-ec2-instance-credentials-can-be-used-from/) using `ec2:SourceInstanceARN` would not effectively restrict these resulting context-less session credentials, even if the instance was shutdown or the instance profile detached.
 
-### Eluding Role Session Revocation
+### Bypassing Role Session Revocation
 
-*Previously, sessions assuming their own role in a short loop would elude Role session revocation.*
+*Previously, sessions assuming their own role in a short loop would bypass Role session revocation.*
 
 **Note:** See the [Updated Revocation Behavior](#updated-revocation-behavior) for why this does not work anymore.
 
@@ -106,10 +108,10 @@ Generally this attack requires multiple roles, and should not have worked in the
 
 Due to eventual consistency in IAM, the revocation policy will take some amount of time to apply to active sessions. Despite this, the `[policy creation time]` value in the session revocation template previously resolved to the time at which the policy was applied, not when it took effect, which, in my testing is typically about six seconds later.
 
-This delay means calling `sts:AssumeRole` within this small window in a short loop (shown below) will elude revocations assuming this further behavior is not subsequently detected. 
+This delay means calling `sts:AssumeRole` within this small window in a short loop (shown below) will bypass revocations assuming this further behavior is not subsequently detected. 
 
 ![sar-role-juggling](/images/sar-role-juggling.png)
-***The image above shows Implicit SAR Role Juggling previously capable of eluding both session revocation and expiration.***
+***The image above shows Implicit SAR Role Juggling previously capable of bypass both session revocation and expiration.***
 
 Alternatively, it's worth noting that the web revocation IAM event only takes two seconds to be delivered through Event Bridge and SQS. With IAM events configured to send to SQS, it was also previously possible to use the revocation event as a trigger to refresh the session instead of constantly refreshing the current session every few seconds.
 
@@ -117,7 +119,7 @@ While the policy template used by the AWS Console previously used the current ti
 
 #### Example Demo
 
-To get a better understanding of how eluding revocation worked previously it may help to see this happening in real time.
+To get a better understanding of how bypass revocation worked previously it may help to see this happening in real time.
 
 <video controls>
   <source src="/images/sar-role-juggling.mp4" type="video/mp4">
