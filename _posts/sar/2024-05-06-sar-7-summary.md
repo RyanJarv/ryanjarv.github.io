@@ -19,15 +19,15 @@ I'll start this post with a quick review of the attack's we've covered so far th
 
 ## Summaries
 
-### [Bypassing Session Expirations and Revocations](sar-4-bypassing-session-expirations-and-revocations.html)
+### Bypassing Session Expirations and Revocations ([link](sar-4-bypassing-session-expirations-and-revocations.html))
 
 Nearly all high-privilege IAM roles were unexpectedly able to bypass session expirations and revocations until detection or role deletion.  
 
-### [Unexpectedly Modifying Session State](sar-5-modifying-session-state.html)
+### Unexpectedly Modifying Session State ([link](sar-5-modifying-session-state.html))
 
 IAM Role session state which was expected to be invariant in certain IAM deployments could be modified by an attacker when a role is affected by Implicit SAR. This may result in the ability to escalate privileges or misattribute logs made by the attacker to another user. 
 
-### [Attacking the Confused Deputy](sar-6-confused-deputy.html)
+### Attacking the Confused Deputy ([link](sar-6-confused-deputy.html))
 
 This can be broken up into two separate attacks:
 
@@ -65,11 +65,11 @@ The fact is, we ultimately rely on accurate and transparent documentation of AWS
 
 Yes. If you use the console to create a role to be assumed by an AWS account and use the default 'this account' option, then the trust policy will list the account itself, and so any principal in the account (including the role in question) that has sts:AssumeRole privileges can assume the role. This can have similar behavior in some of the scenarios previously covered, but it is fundamentally different in that Implicit SAR was both unexpected and undocumented.
 
-## [Attacking the Confused Deputy](#attacking-the-confused-deputy)
+## Attacking the Confused Deputy
 
 Personally, I have some ongoing concerns about the last attack I covered which I'll cover here along with a few clarifications to my previous post.
 
-### Were Service Providers that Implemented `sts:ExternalID` Protected from [Attacking the Confused Deputy](sar-6-confused-deputy.html)? 
+### Were Service Providers that Implemented `sts:ExternalID` Protected from Attacking the Confused Deputy? 
 
 No, `sts:ExternalID` has no effect in this situation for two reasons:
 
@@ -77,7 +77,7 @@ First, calling `sts:AssumeRole` with `sts:ExternalID` set on a role that does no
 
 But, more specifically, even in the cases where `sts:ExternalID` is required on the SaaS provider's role, for example, if they are dogfooding their own product. The `sts:ExternalID` requirement would have been ignored during the Implicit SAR evaluation.
 
-### How likely was the [Attacking the Confused Deputy](#attacking-the-confused-deputy) scenario? 
+### How likely was the Attacking the Confused Deputy scenario? 
 
 I believe it's fairly easy for us to reason that many SaaS providers that used IAM roles were likely affected in some form, however to what degree, or whether this had a material risk on customers is difficult to answer. 
 
@@ -85,7 +85,7 @@ This is based on the observation that SaaS providers will need to use `"sts:Assu
 
 The primary blocker for this attack I believe comes down to whether the platform soft or hard fails on partial access, and whether, access in the same account or organization was denied or not. However, on the second point, how many SaaS providers take this arguably unnecessary pre-caution is uncertain. I've never come across any public documentation or blog posts encouraging SaaS providers to explicitly deny same-account access before my mention of it in [Attacking the Confused Deputy](https://blog.ryanjarv.sh/sar/sar-6-confused-deputy.html#prevention). Furthermore, many SaaS providers are still struggling with [fairly basic issues](https://blog.wut.dev/2024/08/14/vendor-cloud-security.html) that have already been well documented, which does not instill confidence this is a commonly implemented mitigation.
 
-### How likely is the [Attacking the Confused Deputy](#attacking-the-confused-deputy) scenario now? 
+### How likely is the Attacking the Confused Deputy scenario now? 
 
 Not likely. I'm not aware of this being exploited previously and new occurrences of this attack would be unlikely due to AWS's change in role behavior. However, ongoing self-assume behavior can lock roles into the previous Implicit SAR behavior which means providers may still be susceptible either through accidental role re-assumption or by having previously been targeted by this attack. 
 
