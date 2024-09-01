@@ -9,7 +9,7 @@ post_number: 7
 {{ page.title }}
 ================
 
-<p class="meta">25 Jul 2024</p>
+<p class="meta">30 Aug 2024</p>
 
 ## Introduction
 
