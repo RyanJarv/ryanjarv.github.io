@@ -41,6 +41,10 @@ After that, I'll cover a few attacks that may have been possible in the past wit
   * [Modifying Session State](sar-5-modifying-session-state.html)
   * [Attacking The Confused Deputy](sar-6-confused-deputy.html)
 
+#### Summary
+
+  * [Summary](2024-05-06-sar-7-summary.html)
+
 #### Notes and Thanks
 
 I started this post about a year and a half ago, but took me a long time to finish. After digging into this topic quite a bit I ended up just getting burnt out on it and set it away for a while.
@@ -52,5 +56,7 @@ The mention of implicit SAR bypassing SCP enforcement of EC2 sessions in the [Se
 The effect Implicit SAR had on Role Session Names, which is covered in [Modifying Session State](sar-5-modifying-session-state.html), was also mentioned in [this blog post](https://arkadiyt.com/2024/02/18/detecting-manual-aws-actions-an-update/#detecting-session-name-bypasses) by Arkadiy Tetelman.
 
 Aidian Steele also covers the same topic, along with the `explicitTrustGrant` CloudTrail attribute, which I reference later, in [When AWS invariants aren't [invariant]](https://awsteele.com/blog/2024/02/20/when-aws-invariants-are-not.html).
+
+Lastly, I want to thank [Houston Hopkins](https://twitter.com/hhopk) and [Nick Frichette](https://twitter.com/Frichette_n) for reveiwing and providing feedback the Implicit SAR summary post.
 
 
