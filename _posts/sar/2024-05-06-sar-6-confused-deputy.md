@@ -136,13 +136,13 @@ Ensuring the proxy role is not using the old behavior will prevent the attack de
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "Allow full assume role access",
+      "Sid": "AllowFullAssumeRoleAccess",
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
       "Resource": "*"
     },
     {
-      "Sid": "Deny all access to any resources in the current organization",
+      "Sid": "DenyAllAccessToAnyResourcesInTheCurrentOrganization",
       "Effect": "Deny",
       "Action": "*",
       "Resource": "*",
@@ -153,7 +153,7 @@ Ensuring the proxy role is not using the old behavior will prevent the attack de
       }
     },
     {
-      "Sid": "Deny all actions other than sts:AssumeRole",
+      "Sid": "DenyAllActionsOtherThanStsAssumeRole",
       "Effect": "Deny",
       "NotAction": "sts:AssumeRole",
       "Resource": "*"
