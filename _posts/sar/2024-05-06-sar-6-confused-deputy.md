@@ -18,22 +18,22 @@ In this post, I'll show how Implicit SAR could have turned a few missing securit
 
 ## Example Environment
 
-Let's assume the cloud monitoring service `DetectIT` needs access to a customer's AWS account to collect metrics, a simple diagram of the infrastructure may look like this.
+Let's assume the cloud monitoring service `MonitorIT` needs access to a customer's AWS account to collect metrics, a simple diagram of the infrastructure may look like this.
 
 ```
   | SaaS Provider           |
   |-------------------------|
-  | DetectIT Application    |
+  | MonitorIT Application   |
   |    \                   _|____ Customer 1
   |     \                 / |   
-  |    DetectIT          /  | 
+  |    MonitorIT         /  | 
   |   Proxy Role -------+---+---- Customer 2
   |                      \  | 
   |                       \_|____ Customer 3
   |_________________________|
 ```
 
-During signup, the customer is asked to configure an IAM Role in their own account with a role trust and `sts:ExternalID` condition which allows the `DetectIT` backend application to access the role.
+During signup, the customer is asked to configure an IAM Role in their own account with a role trust and `sts:ExternalID` condition which allows the `MonitorIT` backend application to access the role.
 
 The customer then provides the SaaS provider with the role ARN of this newly configured role. At this point, the SaaS application attempts to Assume the customer's role and if it is successful, it is associated with the customer's account.
 
@@ -74,7 +74,7 @@ Additionally, because the SaaS application is running on EC2 the trust policy of
 
 ## Implicit SAR Confused Deputy
 
-To exploit this configuration an attacker sign's up for a new account with DetectIT using an AWS account controlled by the attacker. Once setup is completed the attacker will find a `sts:AssumeRole` log in their own account containing info about the source of the AssumeRole event.
+To exploit this configuration an attacker sign's up for a new account with `MonitorIT` using an AWS account controlled by the attacker. Once setup is completed the attacker will find a `sts:AssumeRole` log in their own account containing info about the source of the AssumeRole event.
 
 ```
   "userIdentity": {
@@ -84,11 +84,11 @@ To exploit this configuration an attacker sign's up for a new account with Detec
   },
 ```
 
-The `principalId` field above consists of the roleId and name of the DetectIT proxy role separated by a colon. The attacker then takes the roleId (`AROAXXXXXXXXXXXXXXXXX`) and runs a reverse lookup on it to [derive the full Principal ARN](https://hackingthe.cloud/aws/enumeration/enumerate_principal_arn_from_unique_id/).
+The `principalId` field above consists of the roleId and name of the `MonitorIT` proxy role separated by a colon. The attacker then takes the roleId (`AROAXXXXXXXXXXXXXXXXX`) and runs a reverse lookup on it to [derive the full Principal ARN](https://hackingthe.cloud/aws/enumeration/enumerate_principal_arn_from_unique_id/).
 
-As long as the application does not enforce specific naming conventions for customer’s roles, and the assuming principal is actually a Role, rather than an IAM User, the attacker can now reconfigure their DetectIT account to use this newly obtained ARN.
+As long as the application does not enforce specific naming conventions for customer’s roles, and the assuming principal is actually a Role, rather than an IAM User, the attacker can now reconfigure their `MonitorIT` account to use this newly obtained ARN.
 
-*If the DetectIT proxy role is affected by Implicit SAR, the proxy role will successfully authenticate itself completing the registration of the DetectIT account owned by the attacker to DetectIT's own AWS account.*
+*If the `MonitorIT` proxy role is affected by Implicit SAR, the proxy role will successfully authenticate itself completing the registration of the `MonitorIT` account owned by the attacker to MonitorIT's own AWS account.*
 
 ## Getting Real Access
 
@@ -96,7 +96,7 @@ Currently, the attacker has access to the SaaS provider role restricted by the a
 
 What this means, at the moment, for our specific example environment is effectively nothing. To understand the impact of this attack we need to understand what the attacker would need to do next to turn this into a useful exploit.
 
-For the sake of understanding impact let's say our example above was not for DetectIT the monitoring application, it was for AccessIT an SSO provider. This is a service that simply returns temporary credentials to customers from the result of `sts:AssumeRole`.
+For the sake of understanding impact let's say our example above was not for `MonitorIT` the monitoring application, it was for `AccessIT` an SSO provider. This is a service that simply returns temporary credentials to customers from the result of `sts:AssumeRole`.
 
 By using the functionality of the `AccessIT` service the attacker now has the raw credentials of the `AccessIT` proxy role.
 
