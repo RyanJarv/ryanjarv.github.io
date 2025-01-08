@@ -11,6 +11,13 @@ title: Fast Unauthenticated Role Scanning
 Just a quick blog post here, recently I've been trying to open-source some of my projects. One of these was the GoLang
 tool [roles](https://github.com/RyanJarv/roles/blob/main/README.md) for unauthenticated role scanning.
 
+If you're not familiar with this technique you can read up on it on [hackingthe.cloud](https://hackingthe.cloud/aws/enumeration/enum_iam_user_role/).
+But in short, it was first described by Daniel Grzelak in 2016 and is pretty much what it sounds like, an unauthenticated
+enumeration of IAM Principals. You can't view any details about the role, but it allows you to test if a given principal
+exists or not in a specific account. This doesn't sound like much, but can reveal interesting details about software
+used by a particular target or even indicate the presence of a possible vulnerability leading to unauthenticated
+access to the AWS Account, something I'll cover in depth in a future blog post.
+
 The other well-known tool for scanning unauthenticated principals was [quiet-riot](https://github.com/righteousgambit/quiet-riot)
 which was able to achieve 1,170 reqs/sec. Despite achieving this throughput, it is
 written in Python, which despite its simplicity tends to be difficult to code high-performance code in. This got me
