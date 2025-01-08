@@ -37,9 +37,10 @@ and [documented it](https://github.com/RyanJarv/roles/tree/main?tab=readme-ov-fi
 new methods of enumeration in case I ended up hitting account limits on a specific API call. However, the key thing here
 was running a few goroutines for each plugin, in each region.
 
-With this I was able to hit about 2000 tests/second per second. I think I may have assumed the
-quiet riot benchmarks where in a single account, so originally I was a bit un-impressed with this and decided to see if using a
-dedicated AWS organization was any faster. in hindsight this was already quite a bit faster considering I only used one account for this inital benchmark.
+With this I was able to hit about 2k tests/second per second. I think I may have assumed the quiet riot benchmarks where 
+in a single account, so originally I was a bit un-impressed with this and decided to see if using a dedicated AWS 
+organization was any faster. in hindsight this was already quite a bit faster considering I only used one account for 
+this initial benchmark.
 
 For the org test I started by registering a new AWS account and started adding the `-org` setup mode. This enabled AWS 
 Organizations in the account, created as many sub-accounts as allowed, and ran the account level setup on each. By 
