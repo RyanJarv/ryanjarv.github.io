@@ -21,8 +21,8 @@ other's might be able to see in your account by checking out [awseye.com](https:
 along with a few other's to identify resource's used by a given AWS account.
 
 The other well-known tool for scanning unauthenticated principals that I'm aware of is [quiet-riot](https://github.com/righteousgambit/quiet-riot)
-which can achieve testing 1,170 principals/sec. Despite being able to achieving this throughput, it is written in Python,
-which seems to me at least, very difficult to code high-performance code in. This got me a bit curious about what the 
+which can achieve testing 1,170 principals/sec. Despite being able to achieving this throughput, it is written in Python
+which is difficult to write high-performance code with. This got me a bit curious about what the 
 upper limit might be for a similar tool written in GoLang.
 
 Originally, [roles](https://github.com/RyanJarv/roles/blob/main/README.md) wasn't intended to be fast, I worked
