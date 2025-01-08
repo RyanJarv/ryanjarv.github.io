@@ -23,7 +23,7 @@ along with a few other's to identify resource's used by a given AWS account.
 The other well-known tool for scanning unauthenticated principals that I'm aware of is [quiet-riot](https://github.com/righteousgambit/quiet-riot)
 which can achieve testing 1,170 principals/sec. Despite being able to achieving this throughput, it is written in Python,
 which tends to be difficult to code high-performance code in. This got me a bit curious about what the upper limit might 
-be for a similar tool written in GoLang, which tends to be surprisingly easy to write fast highly concurrent code with.
+be for a similar tool written in GoLang, which in my opinion, is quite a bit easier in to write high performance code with.
 
 Originally, [roles](https://github.com/RyanJarv/roles/blob/main/README.md) wasn't intended to be fast, I worked
 on it, because I wanted a few features like caching and variable interpolation in role names, and secondly I often find it
@@ -37,18 +37,19 @@ and [documented it](https://github.com/RyanJarv/roles/tree/main?tab=readme-ov-fi
 new methods of enumeration in case I ended up hitting account limits on a specific API call. However, the key thing here
 was running a few goroutines for each plugin, in each region.
 
-With this I was able to hit about 2000 reqs/second per second, considering [quiet-riot](https://github.com/righteousgambit/quiet-riot)
-was getting 1200 reqs/second across twenty accounts this seemed pretty good.
+With this I was able to hit about 2000 tests/second per second, considering [quiet-riot](https://github.com/righteousgambit/quiet-riot)
+was getting 1200 tests/second across twenty accounts this seemed pretty good.
 
 Next, I registered a new AWS account and started adding the `-org` setup mode. This enabled AWS Organizations in the
 account, created as many sub-accounts as allowed, and ran the account level setup on each. By default, you can only
 create 9 sub-accounts, so along with the root account the organization mode used 10 accounts in a similar setup as
-before, and not surprisingly got approximately 10 times the throughput for a total of 20k reqs/second.
+before, which resulted in about 10 times the throughput for a total of 20k principal tests/second.
 
 These tests weren't perfect, the stats code was originally broken, and out of a bit of caution, I ended up disabling
 three of the five plugins and reducing the concurrency during the org testing to 1/5th the optimal account settings.
-It's a bit surprising it worked out to just about 10 times after adjusting for the broken stats code. In any
-case, it seems scanning at 20k roles/second for short durations (up to 20 seconds) is possible. And secondly, GoLang is awesomely fast.
+It's actually a bit surprising it worked out to just about 10 times after adjusting for the broken stats code, 
+considering I reduced the concurrency quite a bit in the org test. In any case, it seems scanning at 20k tests/second 
+for short durations (up to 20 seconds) is possible. And secondly, GoLang is awesomely fast.
 
 One question I still have though is how API limiting works on these API actions, if they use a token bucket rate
 limiter these short-duration tests may not mean that much since the bucket is usually refilled slowly over some duration
