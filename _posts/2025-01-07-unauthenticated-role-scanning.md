@@ -16,13 +16,14 @@ But in short, it was first described by Daniel Grzelak in 2016 and is pretty muc
 enumeration of IAM Principals. You can't view any details about the role, but it allows you to test if a given principal
 exists or not in a specific account. This doesn't sound like much, but can reveal interesting details about software
 used by a particular target or even indicate the presence of a possible vulnerability leading to unauthenticated
-access to the AWS Account, something I'll cover in depth in a future blog post.
+access to the AWS Account, something I'll cover in depth in a future blog post. You can get an idea of what roles 
+other's might be able to see in your account by checking out [awseye.com](https://awseye.com) it uses this technique 
+along with a few other's to identify resource's used by a given AWS account.
 
-The other well-known tool for scanning unauthenticated principals was [quiet-riot](https://github.com/righteousgambit/quiet-riot)
-which was able to achieve 1,170 reqs/sec. Despite achieving this throughput, it is
-written in Python, which despite its simplicity tends to be difficult to code high-performance code in. This got me
-a bit curious about what the upper limit might be for a similar tool written in GoLang, which tends to be surprisingly
-easy to write fast highly concurrent code with.
+The other well-known tool for scanning unauthenticated principals that I'm aware of is [quiet-riot](https://github.com/righteousgambit/quiet-riot)
+which can achieve testing 1,170 principals/sec. Despite being able to achieving this throughput, it is written in Python,
+which tends to be difficult to code high-performance code in. This got me a bit curious about what the upper limit might 
+be for a similar tool written in GoLang, which tends to be surprisingly easy to write fast highly concurrent code with.
 
 Originally, [roles](https://github.com/RyanJarv/roles/blob/main/README.md) wasn't intended to be fast, I worked
 on it, because I wanted a few features like caching and variable interpolation in role names, and secondly I often find it
@@ -62,8 +63,6 @@ currently rate-limited to a maximum of 50 requests per second, and the org-mode 
 the APIs in this way is a bit of a corner case, and while it's important to know what's possible, it may be in your
 best interest to avoid going much faster than these limits for an extended period.
 
-The tool also supports caching and role name interpolation for variables like the Account ID and Region. At some point, I'd like to support more
-advanced wordlist options, if you're interested in working on that feel free to ping me or open a PR!
-
-
-
+The tool also supports caching and role name interpolation for variables like the Account ID and Region. At some point,
+I'd like to support more advanced wordlist options, if you're interested in working on that feel free to ping me or open
+a PR!
