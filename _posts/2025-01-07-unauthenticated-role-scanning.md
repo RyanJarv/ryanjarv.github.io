@@ -53,6 +53,8 @@ It's actually a bit surprising it worked out to just about 10 times after adjust
 considering I reduced the concurrency quite a bit in the org test. In any case, it seems scanning at 20k tests/second 
 for short durations (up to 20 seconds) is possible. And secondly, GoLang is awesomely fast.
 
+Edit: Lets go with ~13.5k /sec, looking at the stats code again it didnt need to be adjusted. This makes a bit more sense too. 
+
 One question I still have though is how API limiting works on these API actions, if they use a token bucket rate
 limiter these short-duration tests may not mean that much since the bucket is usually refilled slowly over some duration
 of time. Either way, I thought this was interesting and wanted to share the results even if it wasn't exactly a
