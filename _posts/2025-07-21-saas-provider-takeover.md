@@ -220,8 +220,6 @@ This vulnerability serves as a powerful reminder that security configurations th
 
 The core lesson is that SaaS providers must be vigilant not only about securing customer access but also about protecting their own infrastructure from being accessed through their own platform. The principle of least privilege applies everywhere.
 
-I urge all SaaS builders on AWS to audit their cross-account proxy roles immediately. Security is not just about what you allow, but also about what you explicitly deny.
-
 
 ## AWS's Response and Last Words
 
