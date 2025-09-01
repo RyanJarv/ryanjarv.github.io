@@ -18,15 +18,15 @@ Notice anything wrong here? It doesn't seem like much, but I've already describe
 
 AWS CDK requires you to bootstrap each environment that you will be deploying infrastructure to. You can either let this step run automatically in the first CI/CD run or run it manually with cdk bootstrap:
 
-<img src="/images/cdk-bootstrap.png">
+<img src="/images/cdk-bootstrap.png" style="width: 80%;">
 
 You can see above that this deployed a CloudFormation template, which ended up creating a set of four IAM roles with permissions varying from ReadOnly to Administrative access via CloudFormation.
 
-<img src="/images/cdk-roles.png">
+<img src="/images/cdk-roles.png", style="width: 80%;">
 
 And if you look at the trust policies for these four roles you'll notice that each one is configured to trust the current account's root principal:
 
-<img src="/images/cdk-role-trust-policy.png">
+<img src="/images/cdk-role-trust-policy.png", style="width: 80%;">
 
 For most accounts, this is a reasonable default, since typically only trusted users will have the required `sts:AssumeRole` permission in their identity policy.
 
