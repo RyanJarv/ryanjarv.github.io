@@ -63,7 +63,7 @@ The attack unfolds in four simple steps, requiring no prior authentication to th
 
 The attack begins with finding a vulnerable IAM Role ARN within the SaaS provider's AWS account. Attackers don't need credentials for this; the SaaS provider's AWS Account ID is often provided in the account onboarding documentation, after which, you can use [awseye.com](https://awseye.com) or [unauthenticated role scanning](https://blog.ryanjarv.sh/2025/01/07/unauthenticated-role-scanning.html) to discover potential IAM Role ARNs that can be targeted.
 
-The CDK bootstrap Roles are prime targets due to the widespread use of AWS CDK and because they follow a predictable naming pattern (e.g., cdk-hnb659fds-lookup-role-<account-id>-<region>), however, there is a number of tools that create similar predictable role names. The key is to find roles that are typically deployed with the trust policies set to trust the current account's root principal, which is what allows this attack to work.
+The CDK bootstrap Roles are prime targets due to the widespread use of AWS CDK and because they follow a predictable naming pattern (e.g., `cdk-hnb659fds-lookup-role-{account-id}-{region}`), however, there is a number of tools that create similar predictable role names. The key is to find roles that are typically deployed with the trust policies set to trust the current account's root principal, which is what allows this attack to work.
 
 **Step 2: Onboarding**
 
