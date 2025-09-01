@@ -215,11 +215,14 @@ If you are a bug bounty hunter or security researcher testing for this vulnerabi
 
 A key part of this is establishing a baseline for what "success" and "failure" look like in the target SaaS application's UI.
 
-**Establish a "Success" Baseline:** To see what a successful connection looks like without using a real, sensitive role, you can use a harmless test role. I built a simple tool for this exact purpose: [Assume Role ID](https://github.com/RyanJarv/assume-role-id/tree/main). It provides a publicly assumable role that you can use to see the application's behavior upon a successful `sts:AssumeRole` call.
+* **Establish a "Success" Baseline:** 
+    * To see what a successful connection looks like without using a real, sensitive role, you can use a harmless test role. I built a simple tool for this exact purpose: [Assume Role ID](https://github.com/RyanJarv/assume-role-id/tree/main). It provides a publicly assumable role that you can use to see the application's behavior upon a successful `sts:AssumeRole` call.
 
-**Establish a "Failure" Baseline:** Next, find out what an unsuccessful connection looks like. Simply attempt to connect the SaaS platform to a non-existent role ARN, such as arn:aws:iam::123456789012:role/ThisRoleDoesNotExist.
+* **Establish a "Failure" Baseline:** 
+    * Next, find out what an unsuccessful connection looks like. Simply attempt to connect the SaaS platform to a non-existent role ARN, such as arn:aws:iam::123456789012:role/ThisRoleDoesNotExist.
 
-**Test the Target Role:** Now that you have both baselines, you can test the suspected vulnerable role.
+* **Test the Target Role:** 
+    * Now that you have both baselines, you can test the suspected vulnerable role.
 
 If the application's response matches your failure baseline, the account is likely not vulnerable to that specific role.
 
