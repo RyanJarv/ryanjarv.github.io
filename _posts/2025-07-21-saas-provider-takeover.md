@@ -209,27 +209,6 @@ Even if you don't run a SaaS platform, you should be deliberate about the roles 
 
 Yes, I've found and reported this specific vulnerability to several SaaS platforms.
 
-## A Note for Security Researchers: How to Test Responsibly
-
-If you are a bug bounty hunter or security researcher testing for this vulnerability, you must confirm its existence without accessing any data from the target account. The goal is to prove that the role is assumable, then stop and report immediately.
-
-A key part of this is establishing a baseline for what "success" and "failure" look like in the target SaaS application's UI.
-
-* **Establish a "Success" Baseline:** 
-    * To see what a successful connection looks like without using a real, sensitive role, you can use a harmless test role. I built a simple tool for this exact purpose: [Assume Role ID](https://github.com/RyanJarv/assume-role-id/tree/main). It provides a publicly assumable role that you can use to see the application's behavior upon a successful `sts:AssumeRole` call.
-
-* **Establish a "Failure" Baseline:** 
-    * Next, find out what an unsuccessful connection looks like. Simply attempt to connect the SaaS platform to a non-existent role ARN, such as arn:aws:iam::123456789012:role/ThisRoleDoesNotExist.
-
-* **Test the Target Role:** 
-    * Now that you have both baselines, you can test the suspected vulnerable role.
-
-If the application's response matches your failure baseline, the account is likely not vulnerable to that specific role.
-
-If the application's response matches your success baseline, you have likely confirmed the vulnerability.
-
-At this point, you must stop. Do not proceed to view or interact with any data. Take a screenshot, document your findings, and report them immediately. The source code for the Assume Role ID tool is [available on GitHub](https://github.com/RyanJarv/assume-role-id/tree/main).
-
 ## Conclusion: A Lesson in Defense-in-Depth
 
 This vulnerability serves as a powerful reminder that security configurations that are perfectly safe in one context can become critical risks in another. A standard CDK bootstrap role, harmless on its own, became the key to a potential account takeover when placed in the environment of a multi-tenant SaaS platform.
