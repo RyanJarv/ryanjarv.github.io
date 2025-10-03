@@ -8,8 +8,6 @@ title: That time I complained about OpenBSD Package Signing and They Fixed It
 
 <p class="meta">13 November 2020 - Somewhere</p>
 
-This issue has been fixed in OpenBSD for quite some time now, specifically with the addition of signify(1). Also, grain of salt, I'm writing mostly from memory here.
-
 Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did not support signed packages via pkg_add, or at least not in a way that mattered. There was support for signatures but they where not explicitly enforced. As in you can use pkg_add to download a package, and it will verify the signature if it exists, but if it doesn't than that's cool too.
 
 This of course defeats the purpose of signing, assuming an attacker can modify packages, you also have to assume they can simply remove the signature. This baffled me, enough so that I decided to stick with FreeBSD a while longer. I was also fairly new to the IT field and the knowledge that everything is a hack hadn't quite set in yet, even somethings in the notoriously secure OpenBSD I had heard so much about.
