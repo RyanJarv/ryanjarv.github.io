@@ -7,15 +7,14 @@ title: That time I complained about OpenBSD Package Signing and They Fixed It
 ================
 
 <p class="meta">13 November 2020 - Somewhere</p>
-I'll admit this is a bit strange for me to bring up now, it's already been 7 years. But the thing is I need a job.. so I'm going back and digging up any scraps I can pass off as some meager claim to fame.
 
-To be clear this issue has been fixed in OpenBSD for quite some time now, specifically with the addition of signify(1). Also, grain of salt, I'm writing mostly from memory here.
+This issue has been fixed in OpenBSD for quite some time now, specifically with the addition of signify(1). Also, grain of salt, I'm writing mostly from memory here.
 
-Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did not support sign packages via pkg_add, or at least not in a way that mattered. There was support for signatures but they where not explicitly enforced. As in you can use pkg_add to download a package, and it will verify the signature if it exists, but if it doesn't than that's cool too.
+Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did not support signed packages via pkg_add, or at least not in a way that mattered. There was support for signatures but they where not explicitly enforced. As in you can use pkg_add to download a package, and it will verify the signature if it exists, but if it doesn't than that's cool too.
 
 This of course defeats the purpose of signing, assuming an attacker can modify packages, you also have to assume they can simply remove the signature. This baffled me, enough so that I decided to stick with FreeBSD a while longer. I was also fairly new to the IT field and the knowledge that everything is a hack hadn't quite set in yet, even somethings in the notoriously secure OpenBSD I had heard so much about.
 
-Anyways I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD Devs, I don't remember much about for what it's worth it did seem like the tweet might have gotten to get to the right person since it wasn't too long after that the issue was resolved with the addition of signify(1). 
+Anyways, I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD Devs, I don't remember what I said exactly but it seemed like the tweet might have gotten to get to the right person because it wasn't too long after that the issue was resolved with the addition of signify(1).
 
 I'll try to find that twitter post, since I'm really curious if that was what prompted this change. Maybe it'll be amongst some old backups, will see.
 
