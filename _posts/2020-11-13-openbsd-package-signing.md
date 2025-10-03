@@ -12,7 +12,7 @@ Around 2013ish (? give or take) OpenBSD (pre 5.5) evidently did not support sign
 
 This of course defeats the purpose of signing, assuming an attacker can modify packages, you also have to assume they can simply remove the signature. This baffled me, enough so that I decided to stick with FreeBSD a while longer. I was also fairly new to the IT field and the knowledge that everything is a hack hadn't quite set in yet, even somethings in the notoriously secure OpenBSD I had heard so much about.
 
-Anyways, I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. My tweet got some attention from some OpenBSD Devs, I don't remember what I said exactly, it wasn't too long after that the issue was resolved with the addition of signify(1).
+Anyways, I posted about this on twitter at the time, my core beliefs where shaken and I was scared.. so who knows what I said. I don't remember what I said exactly, but my tweet got some attention from some OpenBSD Devs and it wasn't too long after that the issue was resolved with the addition of signify(1).
 
 I'll try to find that twitter post, since I'm really curious if that was what prompted this change. Maybe it'll be amongst some old backups, will see.
 
