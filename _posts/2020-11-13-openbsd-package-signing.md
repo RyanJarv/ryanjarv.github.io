@@ -22,7 +22,7 @@ On second thought I suppose it's gotta be online somewhere, it is the Internet a
 
 
 
-In OpenBSD 5.4 and before [pkg_add](https://man.openbsd.org/OpenBSD-5.4/pkg_add.1) you have the -D nosig option, which I believe only disables signing on a signed package and has no effect on non-signed packages.
+In OpenBSD 5.4 and before [pkg_add](https://man.openbsd.org/OpenBSD-5.4/pkg_add.1) you have the -D nosig option, which only disables signing on a signed package and has no effect on non-signed packages.
 
 ```
 nosig    do not check digital signatures. Still displays a very prominent message if a signature is found.
