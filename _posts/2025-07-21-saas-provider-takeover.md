@@ -128,7 +128,7 @@ Fortunately, fixing this vulnerability is straightforward. Here are the options,
 
 **Primary Fix: The Explicit Deny Policy (Recommended)**
 
-The most effective solution is to add a Deny statement to the SaaS proxy role's identity policy. This explicitly forbids it from assuming roles within its own AWS account, preventing this and similar vulnerabilities entirely. The aws:ResourceAccount and aws:PrincipalAccount condition keys are AWS global conditions that compare the account ID of the resource being accessed with the account ID of the principal making the request, ensuring the policy only applies when the role is trying to assume another role in the same account.
+The most effective solution is to add a Deny statement to the SaaS proxy role's identity policy. This explicitly forbids it from assuming roles within its own AWS account, preventing this and similar vulnerabilities entirely. The `aws:ResourceAccount` and `aws:PrincipalAccount` condition keys are AWS global conditions that compare the account ID of the resource being accessed with the account ID of the principal making the request, ensuring the policy only applies when the role is trying to assume another role in the same account.
 
 ```json
 {
@@ -153,7 +153,7 @@ This is also the same fix for the attack I covered previously in [Implicit SAR â
 
 **Secondary Mitigation: External ID Enforcement**
 
-After publishing this, [Aidan Steele](https://x.com/__steele) reminded me that another mitigation applies here: if you ensure all customer roles have a `sts:External` condition present, then attempting to register the CDK bootstrap role won't work as it does not enforce any specific `sts:ExternalId`.
+This is also the same fix for the attack I covered previously in [Implicit SAR â€“ Attacking the Confused Deputy](https://blog.ryanjarv.sh/sar/sar-6-confused-deputy.html) a while ago. I'd also recommend taking a look at that if you haven't already, as it can still affect SaaS providers that haven't taken any action.
 
 The process for enforcing customer use of the `sts:ExternalId` conditional is the following:
 
@@ -201,9 +201,11 @@ However, if you allow users full control over the ExternalID you may not want to
 
 ## Guidance for AWS CDK Users
 
-Even if you don't run a SaaS platform, you should be deliberate about the roles cdk bootstrap creates. You can lock down the bootstrap roles from the start by using the --trust flag to specify which principals are allowed to assume them.
+Even if you don't run a SaaS platform, you may want to consider explicitly specifying the principals trusted by the CDK bootstrap roles. This isn't done automatically because there is no appropriate default value; however, if you know who will be using CDK beforehand, you can lock down the trusted principals by using the --trust flag. Only the principals specified in this flag will be able to access the privileged CDK roles directly.
 
-> cdk bootstrap --trust <specific_role_arn_or_account_id>
+> cdk bootstrap --trust \<specific_role_arn_or_account_id\>
+
+As always, it's important to consider whether there are any methods by which an unprivileged user could access your trusted deployment principals. However, in this specific scenario, the attacker has limited control over the actions that can be performed in the account, and indirect escalation scenarios do not apply.
 
 ## Have You Found This Vulnerability in The Wild?
 
