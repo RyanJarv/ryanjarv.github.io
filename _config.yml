@@ -1,6 +1,7 @@
+title: "RyanJarv's Blog"
 name: "RyanJarv's Blog"
 description: "Mostly about AWS, Infrastructure, and Security"
-url: "https://blog.ryanjarv.sh/"
+url: "https://blog.ryanjarv.sh"
 author:
   twitter: ryan_jarv
 defaults:
