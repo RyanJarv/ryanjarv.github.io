@@ -89,7 +89,7 @@ email address given the cluster domain name discovered through certificate trans
 ![rosa cluster info](/images/rosa-cluster-info.png)
 
 From here, I needed to find a way to go from the victim's email address (`me+redhat-1@ryanjarv.sh`) to the victim's 
-username `rjarv`, which is needed to initiate the cluster transfer. With a bit of prompt tweaking, and after brutalizing
+username `rjarv`, which is needed to initiate the cluster transfer. With a bit of prompt tweaking, and after butchering
 my last name, ChatGPT was able to guess this correctly in 6 guesses:
 
 ![rosa cluster username](/images/rosa-cluster-username.png)
