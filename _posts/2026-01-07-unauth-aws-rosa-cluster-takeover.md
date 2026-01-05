@@ -16,7 +16,7 @@ While researching the ROSA API, I noticed an endpoint related to cluster transfe
 `api.openshift.com/api/accounts_mgmt/v1/cluster_transfers` was used to view, initiate, and update AWS ROSA Classic 
 cluster transfers.
 
-![cluster transfer endpoint](../images/cluster-transfer-endpoint.png)
+![cluster transfer endpoint](/images/cluster-transfer-endpoint.png)
 
 The intended workflow to initiate a transfer worked like this:
 
@@ -33,7 +33,7 @@ The intended workflow to initiate a transfer worked like this:
 It wasn't immediately clear where to find the organization ID and ebs account ID, but after a bit of searching through
 my HTTP history in Caido, I found the values in the response from `/api/accounts_mgmt/v1/current_account`:
 
-![current account](../images/current-account.png)
+![current account](/images/current-account.png)
 
 ## The Vulnerability: Missing Authorization
 
@@ -74,13 +74,13 @@ the targets) are publicly discoverable via Certificate Transparency (CT) logs.
 With the target info in hand, the exploitation was trivial. I wrote a script to gather the cluster UUID and the owner's
 email address given the cluster domain name discovered through certificate transparency logs:
 
-![rosa cluster info](../images/rosa-cluster-info.png)
+![rosa cluster info](/images/rosa-cluster-info.png)
 
 From here, I needed to find a way to go from the victim's email address (`me+redhat-1@ryanjarv.sh`) to the victim's 
 username `rjarv`, which is needed to initiate the cluster transfer. With a bit of prompt tweaking, ChatGPT was able to 
 guess this correctly within 6 guesses:
 
-![rosa cluster username](../images/rosa-cluster-username.png)
+![rosa cluster username](/images/rosa-cluster-username.png)
 
 Realistically, most cases should be easier as businesses typically keep usernames consistent across platforms. This, 
 combined with the ability to test for invalid usernames (by sending many transfer requests), I felt was sufficient 
@@ -88,13 +88,13 @@ to cover most cases and decided to move on.
 
 With the cluster creator's username and cluster UUID, it was possible to initiate the transfer:
 
-![rosa cluster transfer poc](../images/rosa-cluster-transfer-poc.png)
+![rosa cluster transfer poc](/images/rosa-cluster-transfer-poc.png)
 
 The `transfer2.sh` script shown uses the attacker's RedHat credentials to gather the `recipient_external_org_id` and 
 `recipient_ebs_account_id` values from `api.openshift.com/api/accounts_mgmt/v1/current_account` and then sends the 
 equivalent of the following curl request:
 
-![initiate cluster transfer request](../images/rosa-cluster-transfer-request.png)
+![initiate cluster transfer request](/images/rosa-cluster-transfer-request.png)
 
 By sending this payload to `api.openshift.com`, the Red Hat console would generate a "Transfer Ownership Request" for the 
 victim's cluster. As the "recipient", I could simply log into my own console, see the pending request, and click "Accept".
@@ -120,7 +120,7 @@ I used a known technique to pivot from the cluster to the AWS account:
       * The resulting IAM role has `iam:PassRole`, `ec2:RunInstances`, and `ec2:DescribeInstances` AWS IAM permissions, among others.
 3. **Exfiltration:** With these AWS credentials, I could list actively used IAM Instance Profiles and exfiltrate the AWS credentials for each by creating EC2 instances with malicious User Data scripts. This is shown below.
 
-![initiate cluster transfer request](../images/rosa-cluster-ec2-creds.png)
+![initiate cluster transfer request](/images/rosa-cluster-ec2-creds.png)
 *The image above shows the process of retrieving all actively used IAM Instance Profiles with admin access to the ROSA 
 cluster.*
 
@@ -157,7 +157,7 @@ To me, this vulnerability highlights the importance of monitoring emails from Sa
 could be completely mitigated by investigating the cause of the cluster transfer initiation email which was sent from
 `noreply@redhat.com`:
 
-![rosa victim cluster transfer email](../images/rosa-victim-cluster-transfer-email.png)
+![rosa victim cluster transfer email](/images/rosa-victim-cluster-transfer-email.png)
 
 This, however, is more difficult than it sounds; unless the recipient is on call, there isn't much reason to
 be checking emails, which are often drowned out by other alerts on the weekend or holidays. In my case, I didn't 
