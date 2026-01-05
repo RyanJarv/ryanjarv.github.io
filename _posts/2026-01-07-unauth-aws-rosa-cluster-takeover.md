@@ -166,3 +166,10 @@ see this email until writing up the blog post because it was marked as spam by m
 If you rely on any SaaS provider for critical workloads, I would recommend considering email rules to explicitly catch 
 and alert on each email from the SaaS providers you use, then incrementally filter out ones that can 
 be safely ignored.
+
+Interestingly, while setting up the AWS environments I used above to test this exploit, I ran into a situation where this 
+approach is necessary. After requesting the necessary quota increases from AWS, but before running the tests above, 
+instead of approving or denying my quota increase request, they decided to shut down my account with only five days notice. 
+The email that explained this was also categorized as spam and mixed in with many other similar emails I get regularly 
+from AWS. In my case, this was ok; I wasn't using this account for anything yet, but for in-use production accounts, 
+this same situation would be quite different.
