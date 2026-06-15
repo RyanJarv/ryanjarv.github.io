@@ -40,6 +40,7 @@ It wasn't immediately clear where to find the organization ID and ebs account ID
 my HTTP history in Caido, I found the values in the response from `/api/accounts_mgmt/v1/current_account`:
 
 ![current account](/images/current-account.png)
+***Note:**The Authentication header is missing in this screenshot, this was due to Caido's screenshot mode which remove's auth headers. The vulnerability was related to not validating ownership, not missing authentication.*
 
 # The Vulnerability: Missing Authorization
 
